@@ -1,3 +1,121 @@
+% better microtypesetting
 \usepackage{microtype}
 
-\usepackage{mathtools, amssymb, amsthm}
+% easier macros
+\usepackage{xparse}
+
+% more control over formatting of listing environments
+\usepackage{enumitem}
+
+% automatically right quotation marks
+\usepackage{csquotes}
+
+% general math stuff
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+% theorem environments
+\usepackage{amsthm}
+
+% for xlongrightarrow
+\usepackage{extarrows}
+
+% commutative diagrams
+\usepackage{tikz-cd}
+
+% better referencing
+\usepackage[capitalise,noabbrev]{cleveref}
+% capitalise: always capitalise environment names
+
+% prevents breaking inline math around binary or relationship symbols
+\binoppenalty=\maxdimen
+\relpenalty=\maxdimen
+
+%%%%% setting up enumitem
+% enumerate stle
+\setlist[enumerate, 1]{leftmargin=*, align=left, label=(\arabic*)}
+% list of implications
+\newlist{implicationslist}{description}{1}
+\setlist[implicationslist,1]{leftmargin=\labelwidth, font=\normalfont}
+
+% setting up theorem environments
+\newcounter{everything}
+\theoremstyle{definition}
+\newtheorem{corollary}[everything]{Corollary}
+\newtheorem{definition}[everything]{Definition}
+\newtheorem{lemma}[everything]{Lemma}
+\newtheorem{proposition}[everything]{Proposition}
+
+% text formatting for introducing new terms
+\newcommand{\defemph}{\textbf}
+
+% text with maths
+\newcommand{\klinear}{$k$\nobreakdash-linear}
+\newcommand{\dgmodule}[1]{dg\nobreakdash-#1\nobreakdash-module}
+\newcommand{\dgmodules}[1]{dg\nobreakdash-#1\nobreakdash-modules}
+\newcommand{\injective}[1]{#1\nobreakdash-injective}
+\newcommand{\module}[1]{#1\nobreakdash-module}
+\newcommand{\stable}[1]{#1\nobreakdash-stable}
+
+% arrows
+\newcommand{\To}{\Rightarrow}
+\newcommand{\xto}{\xrightarrow}
+\newcommand{\xlongto}[1]{\xlongrightarrow{\,#1\,}}
+
+% generic categories
+\newcommand{\gencat}{\mathcal}
+\newcommand{\Acat}{\gencat{A}}
+\newcommand{\Bcat}{\gencat{B}}
+\newcommand{\Tcat}{\gencat{T}}
+
+% special categories
+\newcommand{\specialcat}{\mathbf}
+\newcommand{\Ch}{\specialcat{Ch}}
+\newcommand{\dgCh}{\underline{\specialcat{Ch}}}
+\newcommand{\dgFun}{\specialcat{dgFun}}
+\newcommand{\dgdgFun}{\underline{\specialcat{dgFun}}}
+\newcommand{\dgMod}[1]{\specialcat{dgMod}_{#1}}
+\newcommand{\dgdgMod}[1]{\underline{\specialcat{dgMod}}_{#1}}
+\newcommand{\Derived}{\specialcat{D}}
+\newcommand{\KHomotopy}{\specialcat{K}}
+\newcommand{\Fun}{\specialcat{Fun}}
+\newcommand{\Vect}[1]{#1\text{-}\specialcat{Vect}}
+
+% spaces and sets
+\newcommand{\dgHom}{\underline{\operatorname{Hom}}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+\newcommand{\Integer}{\mathbb{Z}}
+\DeclareMathOperator{\Ob}{Ob}
+\newcommand{\Sfrob}{\mathcal{S}}
+
+% functions
+\newcommand{\id}{\mathrm{id}}
+\DeclareMathOperator{\Boundaries}{B}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\Cycles}{Z}
+\DeclareMathOperator{\Homology}{H}
+
+% binary operators and relations
+\renewcommand{\equiv}{\simeq}
+\newcommand{\tensor}{\otimes}
+
+% delimiters
+\NewDocumentCommand{\suchthat}{so}{
+  \IfValueTF{#2}
+  {
+    \,#2|\,
+  }
+  {
+    \IfBooleanTF{#1}
+    {
+      \,\middle|\,
+    }
+    {
+      \mathrel{|}
+    }
+  }
+}
+
+% decorations
+\newcommand{\op}{{\mathrm{op}}}
