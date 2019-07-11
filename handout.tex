@@ -275,7 +275,7 @@ Recall that the existence of (co)limits of~{\shaped{$I$}} diagrams in~$\Ccat$ is
 \]
 That a derived category~$\Derived(\Acat)$ does in general not admit (co)limits can be circumvented by considering \defemph{homotopy (co)limits} instead:
 
-The constant diagram functor~$\Delta \colon \Ch(\Acat) \to \Ch(\Acat)^I \cong \Ch(\Acat^I)$ is additive and respects quasi-isomorphisms and hence descends to an additive functor
+The constant diagram functor~$\Delta \colon \Ch(\Acat) \to \Ch(\Acat)^I \iso \Ch(\Acat^I)$ is additive and respects quasi-isomorphisms and hence descends to an additive functor
 \[
   \Delta
   \colon
@@ -391,6 +391,30 @@ One can rephase the above constructions in the language of total derived functor
       \Right {\lim_I} \,.
     \]
 \end{enumerate}
+
+
+\begin{remark}
+  Let~$I$ be an index set and let~$\Acat$ be an abelian category.
+  The localization functor~$\Ch(\Acat) \to \Derived(\Acat)$ induces functor of diagram categories
+  \[
+    \Ch(\Acat^I)
+    \iso
+    \Ch(\Acat)^I
+    \to
+    \Derived(\Acat)^I
+  \]
+  This functor maps quasi-isomorphisms to isomorphisms and hence induces a functor
+  \[
+    \Derived(\Acat^I) \to \Derived(\Acat)^I \,,
+  \]
+  which we will call the \defemph{forgetful functor}.
+  One may think about~$\Derived(\Acat^I)$ as consisting of diagrams in~$\Acat$ of shape~$I$ which strictly commute, whereas~$\Derived(\Acat)^I$ then consists of diagram of shape~$I$ which commute only \enquote{up to homotopy}.
+  
+  We have seen above that we have functorial constructions~$\Derived(\Acat^I) \to \Derived(\Acat)$ for some of our problems.
+  We can now see why these does not lead to solutions to the original problems, which require functors~$\Derived(\Acat)^I \to \Derived(\Acat)$:
+  This would require the functors~$\Derived(\Acat^I) \to \Derived(\Acat)$ to extend along the forgetful functor~$\Derived(\Acat^I) \to \Derived(\Acat)^I$, which they have no reason to do.
+\end{remark}
+
 
 
 
@@ -1007,7 +1031,7 @@ We find that for~$\id_y \in \Tcat(y,y)$ there exists some~$s \in \Tcat(y,x)$ wit
   
   Every chain complex~$X \in \Ob(\Ch(\Acat))$ splits%
   \footnote{Recall that a chain complex~$X$ is \defemph{split} if it can be (up to isomorphism) degreewise decomposed as~$X^n = B^n \oplus H^n \oplus B^{n+1}$ such that the differential of~$X$ is with respect to this decomposition given by~$\begin{bsmallmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bsmallmatrix}$.
-  Then~$\Cycles^n(X) = B^n \oplus H^n$,~$\Boundaries^n(X) = B^n$ and~$\Homology^n(X) \cong H^n$.
+  Then~$\Cycles^n(X) = B^n \oplus H^n$,~$\Boundaries^n(X) = B^n$ and~$\Homology^n(X) \iso H^n$.
   The claimed decompositon~$X = X' \oplus X''$ is then given degreewise by~$(X')^n = B^n \oplus B^{n+1}$ with differential~$\begin{bsmallmatrix} 0 & 1 \\ 0 & 0 \end{bsmallmatrix}$ and~$(X'')^n = H^n$.}
   since~$\Acat$ is semisimple and can thus be decomposed as~$X = X' \oplus X''$ where~$X'$ is split acyclic and~$X''$ has zero differential.
   In the homotopy category~$\KHomotopy(\Acat)$ the chain complex~$X'$ becomes zero as it is split acyclic and hence contractible.
@@ -1158,7 +1182,7 @@ We calculate the pushout as
   }
   \right.
   \\
-  \cong{}&
+  \iso{}&
   \left(
     X[1] \oplus Y,
     \begin{bmatrix}
