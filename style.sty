@@ -45,6 +45,7 @@
 \newtheorem{definition}[everything]{Definition}
 \newtheorem{lemma}[everything]{Lemma}
 \newtheorem{proposition}[everything]{Proposition}
+\newtheorem{remark}[everything]{Remark}
 
 % text formatting for introducing new terms
 \newcommand{\defemph}{\textbf}
@@ -82,6 +83,7 @@
 \newcommand{\Vect}[1]{#1\text{-}\specialcat{Vect}}
 
 % spaces and sets
+\DeclareMathOperator{\coker}{coker}
 \newcommand{\dgHom}{\underline{\operatorname{Hom}}}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\im}{im}
@@ -101,6 +103,7 @@
 \newcommand{\tensor}{\otimes}
 
 % delimiters
+\DeclarePairedDelimiter{\gen}{\langle}{\rangle}
 \NewDocumentCommand{\suchthat}{so}{
   \IfValueTF{#2}
   {

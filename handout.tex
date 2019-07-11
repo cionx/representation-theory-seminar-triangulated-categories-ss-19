@@ -330,10 +330,10 @@ belonging to~$\Sfrob$, where
   \end{bmatrix} \,.
 \]
 
-The~{\klinear} functor~$I \colon \Ch(k) \to \Ch(k)$ and natural transformations~$i \colon 1 \To I$ and~$p \colon I \To [1]$ extends to a dg-functor~$I \colon \dgCh(k) \to \dgCh(k)$ and dg-natural transformations~$i \colon 1 \To I$ and~$p \colon I \to [1]$.
-By applying~$\dgFun(\Acat^{\op}, -)$ these in turn induce a {\klinear} functor
+The~{\klinear} functors~$I, [1] \colon \Ch(k) \to \Ch(k)$ and natural transformations~$i \colon 1 \To I$ and~$p \colon I \To [1]$ extends to a dg-functors~$I, [1] \colon \dgCh(k) \to \dgCh(k)$ and dg-natural transformations~$i \colon 1 \To I$ and~$p \colon I \to [1]$.
+By applying~$\dgFun(\Acat^{\op}, -)$ these in turn induce a {\klinear} functors
 \[
-  I
+  I, [1]
   \colon
   \dgMod{\Acat}
   \to
@@ -473,14 +473,10 @@ This description of~$\Homology^0(\dgdgMod{\Acat})$ and its triangulated structur
 \end{enumerate}
 
 
-
-\subsection{Review on Cokernels}
-
-
 \subsection{Pretriangulated DG-Categories}
 
 \begin{definition}
-  A dg-functor~$F \colon \Acat \to \Bcat$ is dg-fully faithful if for every two objects~$x, y \in \Acat$ the morphism of chain complexes~$F_{x,y} \colon \Acat(x,y) \to \Bcat(F(x), F(y))$ is an isomorphism.
+  A dg-functor~$F \colon \Acat \to \Bcat$ is \defemph{dg-fully faithful} if for every two objects~$x, y \in \Acat$ the morphism of chain complexes~$F_{x,y} \colon \Acat(x,y) \to \Bcat(F(x), F(y))$ is an isomorphism.
 \end{definition}
 
 \begin{proposition}[dg-Yoneda embedding]
@@ -513,8 +509,290 @@ This description of~$\Homology^0(\dgdgMod{\Acat})$ and its triangulated structur
 The above definition ensures that for a pretriangulated dg-category~$\Acat$ its homotopy category~$\Homology^0(\Acat)$ does carry in a canonical way the structure of a triangulated category.
 
 \begin{definition}
-  A \defemph{dg enhancement} of a triangulated category~$\Tcat$ is a pretriangulated category~$\Acat$ together with an equivalence of triangulated categories~$\Tcat \simeq \Homology^0(\Acat)$.
+  A \defemph{dg-enhancement} of a triangulated category~$\Tcat$ is a pretriangulated category~$\Acat$ together with an equivalence of triangulated categories~$\Tcat \simeq \Homology^0(\Acat)$.
 \end{definition}
+
+
+A dg-enhancement of a triangulated category~$\Tcat$ allows us to identity~$\Tcat$ with a full triangulated subcategory of~$\Homology^0(\dgdgMod{\Acat})$ for some dg-category~$\Acat$.
+We can then try to understand the original triangulated category~$\Tcat$ through the \enquote{higher structure} of the dg-category~$\Acat$.
+
+
+
+\subsection{Cones as Derived Cokernels}
+
+Recall that if~$f \colon x \to y$ is a morphism in an (pre)additive category~$\Acat$ then its cokernel (which does not need to exists) can be thought of in two equivalent ways:
+\begin{itemize}
+  \item
+    A morphism~$\coker(f) \to z$ into any other object is \enquote{the same} as a morphism~$g \colon y \to z$ with~$g f = 0$.
+  \item
+    The cokernel~$\coker(f)$ is the pushout of the following diagram:
+    \[
+      \begin{tikzcd}
+        x
+        \arrow{r}[above]{f}
+        \arrow{d}
+        &
+        y
+        \\
+        0
+        &
+        {}
+      \end{tikzcd}
+    \]
+\end{itemize}
+
+In a triangulated category~$\Tcat$ we do in general have neither cokernels nor pushouts.
+But given a dg-enhancement~$\Tcat \equiv \Homology^0(\Acat)$ for some pretriangulated dg-category~$\Acat$ we can identify~$\Tcat$ with a full triangulated subcategory of~$\Homology^0(\dgdgMod{\Acat})$.
+We can then do the desired calculations in the abelian category~$\dgMod{\Acat} = \Cycles^0(\dgdgMod{\Acat})$ wich admits all (small) colimits and limits.
+
+More precisely, given a fixed morphism~$f \colon M \to N$ in~$\dgMod{\Acat}$ try to understand all morphisms~$g \colon N \to P$ in~$\dgMod{\Acat}$ for which the composition~$g \circ f$ vanishes in~$\Homology^0(\dgdgMod{\Acat})$.
+We have previously seen that~$g \circ f$ vanishes if and only if~$g \circ f$ factors through~$i_M \colon M \to IM$.
+We are hence interested in the pushout of the diagram
+\[
+  \begin{tikzcd}
+    M
+    \arrow{r}[above]{f}
+    \arrow{d}[left]{i_M}
+    &
+    N
+    \\
+    IM
+    &
+    {}
+  \end{tikzcd}
+\]
+in~$\dgMod{\Acat}$.
+This pushout is computed pointwise, hence we want to compute for every~$x \in \Ob(\Acat)$ the pushout
+\[
+  \begin{tikzcd}
+    M_x
+    \arrow{r}[above]{f_x}
+    \arrow{d}[left]{i_{M_x}}
+    &
+    N_x
+    \\
+    I M_x
+    &
+    {}
+  \end{tikzcd}
+\]
+in the category~$\Ch(k)$ where
+\[
+  I M_x
+  =
+  \left(
+    M_x \oplus M_x[1],
+    \begin{bmatrix}
+      0 & 1 \\
+      0 & 0
+    \end{bmatrix}
+  \right)
+  \quad\text{and}\quad
+  i_{M_x}
+  =
+  \begin{bmatrix}
+    1 \\
+    d_{M_x}
+  \end{bmatrix} \,.
+\]
+
+\begin{lemma}
+  For every morphism of chain complexes~$f \colon X \to Y$ the pushout of
+  \[
+    \begin{tikzcd}
+      X
+      \arrow{r}[above]{f}
+      \arrow{d}[left]{i_X}
+      &
+      Y
+      \\
+      IX
+      &
+      {}
+    \end{tikzcd}
+  \]
+  in~$\Ch(k)$ is given by
+  \[
+    \begin{tikzcd}[ampersand replacement = \&, row sep = large, column sep = huge]
+      X
+      \arrow{r}[above]{f}
+      \arrow{d}[left]{i_X}
+      \&
+      Y
+      \arrow{d}[right]{\begin{bsmallmatrix} 0 \\ 1 \end{bsmallmatrix}}
+      \\
+      IX
+      \arrow{r}[below]{\begin{bsmallmatrix} -d_X & 1 \\ f & 0 \end{bsmallmatrix}}
+      \&
+      C^f
+    \end{tikzcd}
+  \]
+  where~$C^f$ denotes the usual mapping cone
+  \[
+    C^f
+    =
+    \left(
+    X[1] \oplus Y,
+    \begin{bmatrix}
+      -d_X & 0   \\
+       f   & d_Y
+    \end{bmatrix}
+  \right) \,.
+  \]
+\end{lemma}
+
+\begin{proof}
+  We calculate the pushout as
+  \begin{align*}
+    {}&
+    \left.
+    \left(
+      X \oplus X[1] \oplus Y,
+      \begin{bmatrix}
+        0 & 1 & 0   \\
+        0 & 0 & 0   \\
+        0 & 0 & d_Y
+      \end{bmatrix}
+    \right)
+    \middle/
+    \gen*{
+      \begin{bmatrix}
+           x  \\
+         d(x) \\
+        -f(x)
+      \end{bmatrix}
+    \suchthat*
+      x \in X
+    }
+    \right.
+    \\
+    \cong{}&
+    \left(
+      X[1] \oplus Y,
+      \begin{bmatrix}
+        -d_X & 0   \\
+         f   & d_Y
+      \end{bmatrix}
+    \right)
+    \\
+    ={}&
+    C^f
+  \end{align*}
+  as claimed.
+\end{proof}
+
+\begin{remark}
+  The above results is (a posteri) not surprising:
+  It is a standard statement from homological algebra that for a morphism of chain complexes~$f \colon X \to Y$ the data of a morphism~$h \colon C^f \to Z$ is the same as that of a morphism~$g \colon Y \to Z$ together with a nullhomotopy of the composition~$g \circ f \colon X \to Z$.
+  Whence~$C^f$ corepresents morphisms going out of~$Y$ whose composition with~$f$ are zero \enquote{up to homotopy}.
+\end{remark}
+
+We hence find that the pushout
+\[
+  \begin{tikzcd}
+    M
+    \arrow{r}[above]{f}
+    \arrow{d}[left]{i_M}
+    &
+    N
+    \arrow{d}
+    \\
+    IM
+    \arrow{r}
+    &
+    C^f
+  \end{tikzcd}
+\]
+is given by~$(C^f)_x = C^{f_x}$ at every~$x \in \Ob(\Acat)$, i.e.\ the~{\dgmodule{$\Acat$}}~$C^f$ is pointwise the usual mapping cone of chain complexes.
+
+We can see that~$C^f$ is actually the cone of~$f$ in the triangulated category~$\Homology^0(\dgdgMod{\Acat})$:
+We have the following commutative diagram in which the left hand side is a pushout, and where the upper row is exact and contained in the Frobenius exact structure of~$\dgMod{\Acat}$:
+\[
+  \begin{tikzcd}
+    0
+    \arrow{r}
+    &
+    M
+    \arrow{r}[above]{i_M}
+    \arrow{d}[left]{f}
+    &
+    IM
+    \arrow{r}[above]{p_M}
+    \arrow{d}
+    &
+    M[1]
+    \arrow{r}
+    &
+    0
+    \\
+    {}
+    &
+    N
+    \arrow{r}
+    &
+    C^f
+    &
+    {}
+    &
+    {}
+  \end{tikzcd}
+\]
+It follows from the standard lemma of homological algebra that we can extend the above diagram to a commutative diagram
+\[
+  \begin{tikzcd}
+    0
+    \arrow{r}
+    &
+    M
+    \arrow{r}[above]{i_M}
+    \arrow{d}[left]{f}
+    &
+    IM
+    \arrow{r}[above]{p_M}
+    \arrow{d}
+    &
+    M[1]
+    \arrow{r}
+    \arrow[dashed,equal]{d}
+    &
+    0
+    \\
+    0
+    \arrow[dashed]{r}
+    &
+    N
+    \arrow{r}
+    &
+    C^f
+    \arrow[dashed]{r}
+    &
+    M[1]
+    \arrow[dashed]{r}
+    &
+    0
+  \end{tikzcd}
+\]
+whose row are exact.
+It follows from the axioms of a Frobenius exact structure that the lower row in this diagram is again contained in the Frobenius exact structure of~$\dgMod{\Acat}$.
+We have seen in the previous review on Frobenius exact structures that
+\[
+  M
+  \xlongto{f}
+  N
+  \to
+  C^f
+  \to
+  M[1]
+\]
+is therefore a distinguished triangle in~$\Homology^0(\dgdgMod{\Acat})$.
+This entails that~$C^f$ is a cone of~$f$ in~$\Homology^0(\dgdgMod{\Acat})$.
+
+We have thus seen that one can think about the cone in~$\Homology^0(\dgdgMod{\Acat})$ as a kind of \enquote{derived cokernel} of~$f$, coming from a pushout in~$\dgMod{\Acat}$ that was choosen as a \enquote{cokernel up to homotopy}.
+
+
+
+\subsection{Extending to~$\dgdgMod{\Acat}$}
+
 
 
 
