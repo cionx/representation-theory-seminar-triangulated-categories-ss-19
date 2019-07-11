@@ -39,32 +39,7 @@ For this talk chain complexes has differential of degree~$+1$.
 \end{lemma}
 
 \begin{proof}
-  Let~$f \colon x \to y$ be an epimorphism in a triangulated category~$\Tcat$.
-  We may complete~$f$ to a distinguished triangle
-  \[
-    x
-    \xlongto{f}
-    y
-    \xlongto{g}
-    z
-    \xlongto{h}
-    \Sigma(x) \,.
-  \]
-  The composition of any two morphisms in a distinguished triangle vanishes, so~$gf = 0$.
-  It follows that~$g = 0$ since~$f$ is an epimorphism.
-  By applying the homological functor~$\Tcat(y,-)$ to this distinguished triangle we arrive at the followig long exact sequence:
-  \[
-    \dotsb
-    \to
-    \Tcat(y,x)
-    \xlongto{f_*}
-    \Tcat(y,y)
-    \xlongto{0}
-    \Tcat(y,z)
-    \to
-    \dotsb
-  \]
-  We find that for~$\id_y \in \Tcat(y,y)$ there exists some~$s \in \Tcat(y,x)$ with~$\id_y = f_*(s) = fs$.
+  See \cref{epi in triangulated splits proof}.
 \end{proof}
 
 \begin{corollary}
@@ -94,38 +69,7 @@ We see from \cref{triangulated abelian is semisimple} that most triangulated cat
 
 
 \begin{proof}
-  \leavevmode
-  \begin{implicationslist}
-    \item[\ref{original is semisimple}~$\implies$~\ref{derived is abelian}:]
-      We realize~$\Derived(\Acat)$ by first passing from the category of chain complexes~$\Ch(\Acat)$ to its homotopy category~$\KHomotopy(\Acat)$ and then localizing at the class of quasi-isomorphisms.
-      
-      Every chain complex~$X \in \Ob(\Ch(\Acat))$ splits%
-      \footnote{Recall that a chain complex~$X$ is \defemph{split} if it can be (up to isomorphism) degreewise decomposed as~$X^n = B^n \oplus H^n \oplus B^{n+1}$ such that the differential of~$X$ is with respect to this decomposition given by~$\begin{bsmallmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bsmallmatrix}$.
-      Then~$\Cycles^n(X) = B^n \oplus H^n$,~$\Boundaries^n(X) = B^n$ and~$\Homology^n(X) \cong H^n$.
-      The claimed decompositon~$X = X' \oplus X''$ is then given degreewise by~$(X')^n = B^n \oplus B^{n+1}$ with differential~$\begin{bsmallmatrix} 0 & 1 \\ 0 & 0 \end{bsmallmatrix}$ and~$(X'')^n = H^n$.}
-      since~$\Acat$ is semisimple and can thus be decomposed as~$X = X' \oplus X''$ where~$X'$ is split acyclic and~$X''$ has zero differential.
-      In the homotopy category~$\KHomotopy(\Acat)$ the chain complex~$X'$ becomes zero as it is split acyclic and hence contractible.
-      Every isomorphism class in~$\KHomotopy(\Acat)$ is therefore represented by a chain complex with zero differential, i.e.\ an object of~$\Acat^\Integer$.
-      No two morphisms between such chain complexes become identified in~$\KHomotopy(\Acat)$ so that the categories~$\KHomotopy(\Acat)$ and~$\Acat^\Integer$ are equivalent.
-      We note that this equivalence is indeed given by~$\Homology^* \colon \KHomotopy(\Acat) \to \Acat^\Integer$.
-      
-      We also see that a quasi-isomorphism between chain complexes with zero differentials must already be an isomorphism.
-      We therefore see that~$\Derived(\Acat)$ is just~$\KHomotopy(\Acat)$ again.
-      
-    \item[\ref{derived is abelian}~$\implies$~\ref{derived is semisimple abelian}:]
-      This follows from \cref{triangulated abelian is semisimple}.
-    
-    \item[\ref{derived is semisimple abelian}~$\implies$~\ref{original is semisimple}]
-      We first observe that an abelian category~$\Bcat$ is semisimple if and only if every morphism~$f \colon x \to y$ in~$\Bcat$ admits a \defemph{pseudoinverse}~$g \colon y \to x$ satisfying~$fgf = f$ and~$gfg = g$:
-      If every morphism~$f$ in~$\Bcat$ admits such a pseudoinverse~$g$ then it follows for every epimorphism~$f$ in~$\Bcat$ from~$fgf = f$ that~$fg = \id$ so that~$f$ splits. 
-      If on the other hand~$\Bcat$ is semisimple and~$f \colon x \to y$ is any morphism in~$\Bcat$ then we have decompositions~$x = x' \oplus \ker(f)$ and~$y = y' \oplus \im(f)$ with~$f$ inducing an isomorphism~$x' \to \im(f)$.
-      The inverse~$\im(f) \to x'$ composed with the projection~$y \to \im(f)$ and the inclusion~$x' \to x$ then give the desired pseudoinverse~$g \colon y \to x$.
-      
-      By assumption every morphism in~$\Derived(\Acat)$ admits a pseudoinverse.
-      Every morphism~$f$ in~$\Acat$ hence admits a pseudoinverse~$g$ in~$\Derived(\Acat)$ (where we regard~$\Acat$ as chain complexes concentrated in degree~$0$) which becomes the pseudoinverse~$\Homology_0(g)$ to~$f$ in~$\Acat$.
-      This shows that every morphism in~$\Acat$ admits a pseudoinverse, so that~$\Acat$ is semisimple.
-    \qedhere
-  \end{implicationslist}
+  See \cref{when the derived is abelian proof}.
 \end{proof}
 
 
@@ -193,22 +137,10 @@ This shows that~$\Derived(\Acat)^I$ is abelian but~$\Derived(\Acat^I)$ is not ab
 
 
 \subsection{(Non-)Existence of Limits and Colimits}
+\label{nonexistence of pushouts}
 
 A triangulated category~$\Tcat$ is in general neither complete nor cocomplete.
-
-We see for example that in the category~$\Derived(\Integer) = \Derived(\Mod{\Integer})$ the nonzero morphism~$f \colon \Integer/2 \to \Integer/4$ does not admit a cokernel:
-Suppose otherwise that~$c \colon \Integer/4 \to C$ is a such a cokernel.
-Then~$c$ is a split epimorphism in~$\Derived(\Integer)$ by \cref{epi in triangulated splits}.
-It follows that~$\Homology^0(c) \colon \Integer/4 \to \Homology^0(C)$ is a split epimorphism in~$\Mod{\Integer}$.
-But~$\Integer/4$ is indecomposable, so it follows that~$\Homology^0(c) = 0$ or~$\Homology^0(c)$ is an isomorphism.
-
-If~$\Homology^0(c) = 0$ then we consider the nonzero morphism~$g \colon \Integer/4 \to \Integer/2$.
-It follows from~$g \circ f = 0$ that~$g$ factors trough~$c$ in~$\Derived(\Integer)$ and therefore factors through~$\Homology^0(c)$ in~$\Mod{\Integer}$.
-But this is not possible since~$\Homology^0(c) = 0$ while~$g \neq 0$.
-
-Suppose now that~$\Homology^0(c)$ is an isomorphism.
-It follows from~$c \circ f = 0$ in~$\Derived(\Integer)$ that~$\Homology^0(c) \circ f = 0$ in~$\Mod{\Integer}$.
-It now further follows that~$f = 0$ which is wrong.
+See \cref{nonexistence of pushouts example} for an explicit counterexample.
 
 
 
@@ -216,9 +148,9 @@ It now further follows that~$f = 0$ which is wrong.
 
 \section{Solution: Working Derived}
 
-We give a first approach to circumventing the above problems.
+We give a first approach to dealing with the above problems.
 We denote for any category~$\Ccat$ by~$\Mor(\Ccat)$ its morphism category.
-We have~$\Mor(\Ccat) \iso \Ccat^I$ for the arrow category~$I = (\bullet \to \bullet)$.
+Then~$\Mor(\Ccat) \iso \Ccat^I$ for~$I = (\bullet \to \bullet)$.
 
 
 
@@ -329,9 +261,8 @@ It follows that the cone functor~$C$ descends to an additive functor
   \colon
   \Derived( \Mor(\Acat) )
   \to
-  \Derived( \Acat )
+  \Derived( \Acat ) \,.
 \]
-where~$\Derived(\Acat^I) = \Derived(\Mor(\Acat))$.
 
 
 
@@ -376,7 +307,7 @@ Let~$\Acat$ and~$\Bcat$ be abelian categories and let~$F \colon \Ch(\Acat) \to \
     \Derived(\Bcat)
   \end{tikzcd}
 \]
-A \defemph{total left derived functor} of the functor~$F$ is a pair~$(\Left F, \varepsilon)$ consisting of a functor~$\Left F \colon \Derived(\Acat) \to \Derived(\Bcat)$ together with a natural transformation~$\varepsilon \colon \Left F \gamma \To \gamma F$ which is terminal with this properties (in a suitable sense).
+A \defemph{total left derived functor} of the functor~$F$ is a pair~$(\Left F, \varepsilon)$ consisting of a functor~$\Left F \colon \Derived(\Acat) \to \Derived(\Bcat)$ together with a natural transformation~$\varepsilon \colon \Left F \circ \gamma \To \gamma \circ F$ which is terminal with this properties (in a suitable sense).
 \[
   \begin{tikzcd}[row sep = huge]
     \Ch(\Acat)
@@ -411,7 +342,7 @@ One can rephase the above constructions in the language of total derived functor
     \]
   \item
     Let~$I$ be an index category and suppose that~$\Acat$ admits all (co)limits of shape~$I$.
-    Then the constant diagram functor~$\Delta_{\Ch(\Acat)} \colon \Ch(\Acat) \to \Ch(\Acat)^I$ admits the adjoints
+    Then the constant diagram functor~$\Delta \colon \Ch(\Acat) \to \Ch(\Acat)^I$ admits adjoints
     \[
       {\colim_I}
       \ladjoint
@@ -449,15 +380,15 @@ One can rephase the above constructions in the language of total derived functor
     \]
     descends to a derived adjunction
     \[
-      \hocolim_I
-      =
       \Left {\colim_I}
+      =
+      \hocolim_I
       \ladjoint
       \Delta
       \ladjoint
-      \Right {\lim_I}
+      \holim_I
       =
-      \holim_I \,.
+      \Right {\lim_I} \,.
     \]
 \end{enumerate}
 
@@ -475,78 +406,30 @@ If~$\Tcat$ is a triangulated category then this leads us to the notion of a pret
 
 
 
-\subsection{Review on DG-Categories}
+\subsection{Notations on DG-Categories}
 
-A dg-category~$\Acat$ consists of a class of objects~$\Ob(\Acat)$, for any two objects~$x, y \in \Acat$ a chain complex~$\Acat(x,y)$, for any three objects~$x, y, z \in \Ob(\Acat)$ a morphism of chain complexes
-\[
-  (-) \circ (-)
-  \colon
-  \Acat(y,z) \tensor \Acat(x,y)
-  \to
-  \Acat(x,z)
-\]
-satisfying the usual associativity diagram, and for every object~$x \in \Ob(\Acat)$ an element~$1_x \in \Cycles^0(\Acat(x,y))$ satifying the usual identity diagrams.
-As an example we enrich~$\Ch(k)$ into a dg-category~$\dgCh(k)$ with~$\dgCh(k)(X,Y) = \dgHom(X,Y)$ being the usual~$\Hom$-chain complex.
-
-To any dg-category~$\Acat$ we can associated the~{\klinear} categories~$\Cycles^0(\Acat)$ and~$\Homology^0(\Acat)$ that are given by~$\Ob(\Cycles^0(\Acat)) = \Ob(\Homology^0(\Acat)) = \Ob(\Acat)$ and
-\[
-  \Cycles^0(\Acat)(x,y)
-  =
-  \Cycles^0(\Acat(x,y))
-  \qquad\text{and}\qquad
-  \Homology^0(\Acat)(x,y)
-  =
-  \Homology^0(\Acat(x,y)) \,.
-\]
-As an example we have~$\Cycles^0(\dgCh(k)) = \Ch(k)$ and~$\Homology^0(\dgCh(k)) = \KHomotopy(k)$.
-
-This examples motivates that one should think about~$\Cycles^0(\Acat)$ as the \defemph{underlying~{\klinear} category} of~$\Acat$, and as the elements of~$\Cycles^0(\Acat(x,y))$ as the \enquote{actual morphisms} from~$x$ to~$y$.
-The category~$\Homology^0(\Acat)$ is the \defemph{homotopy category} of~$\Acat$.
-
-A \defemph{dg-functor}~$F \colon \Acat \to \Bcat$ is given by a map~$F \colon \Ob(\Acat) \to \Ob(\Bcat)$ and morphisms of chain complexes~$F_{x,y} \colon \Acat(x,y) \to \Bcat(F(x), F(y))$ for any two objects~$x, y \in \Ob(\Acat)$, satisfying the usual axioms.
-Every dg-functor~$F \colon \Acat \to \Bcat$ induces~{\klinear} functors~$\Cycles^0(\Acat) \to \Cycles^0(\Bcat)$ and~$\Homology^0(\Acat) \to \Homology^0(\Bcat)$.
-
-A dg-natural transformation~$\alpha \colon F \To G$ between dg-functors~$F, G \colon \Acat \to \Bcat$ assigns to is a family~$\alpha = (\alpha_x)_{x \in \Ob(\Acat)}$ of \enquote{actual morphisms}~$\alpha_x \in \Cycles^0(\Bcat(F(x), G(x)))$ with~$\alpha_y \circ F(f) = G(f) \circ \alpha_x$ for every~$f \in \Acat(x,y)$.
-We get a~{\klinear} abelian category~$\dgFun(\Acat, \Bcat)$ whose objects are dg-functors~$\Acat \to \Bcat$ and whose morphisms are dg-natural transformations.
-% This category can be enriched into a dg-category~$\dgdgFun(\Acat, \Bcat)$ with
-% \[
-%   \dgdgFun(\Acat, \Bcat)(F,G)^i
-%   =
-%   \left\{
-%     (\alpha_x)_{x \in \Ob(\Acat)}
-%   \suchthat*
-%     \begin{tabular}{@{}c@{}}
-%       $\alpha_x \in \Bcat(F(x), G(x))^i$ with \\
-%       $\alpha_y \circ F(f) = (-1)^{ij} G(f) \circ \alpha_x$ \\
-%       for every~$f \in \Acat(x,y)^j$
-%     \end{tabular}
-%   \right\}
-% \]
-% being a subcomplex of~$\prod_{x \in \Ob(\Acat)} \Bcat(F(x), G(x))$.
-This~{\klinear} category can be enriched in a dg-category~$\dgdgFun(\Acat, \Bcat)$.
-Then in particular
-\[
-  \Cycles^0(\dgdgFun(\Acat, \Bcat))
-  =
-  \dgFun(\Acat, \Bcat) \,,
-\]
-so that~$\dgFun(\Acat, \Bcat)$ is the underlying~{\klinear} category of~$\dgdgFun(\Acat, \Bcat)$.
-
-For a dg-category~$\Acat$ a \defemph{(right)~{\dgmodule{$\Acat$}}} is a dg-functor~$M \colon \Acat^{\op} \to \dgCh(k)$.
-This means that at every object~$x \in \Ob(\Acat)$ we have a chain complex~$M_x$, and for every~$f \in \Acat(x,y)^i$ we have associated a map~$M(f) \colon M(y) \to M(x)$ of degree~$i$ such that~$M(g \circ f) = (-1)^{ij} M(f) \circ M(g)$ for all~$f \in \Acat(x,y)^i$ and~$g \in \Acat(y,z)^j$.
-The category of~{\dgmodules{$\Acat$}} is given by
-\[
+We denote by~$\dgCh(k)$ the dg-category of chain complexes over~$k$.
+For any dg-category~$\Acat$ we denote by
+\begin{align*}
   \dgMod{\Acat}
-  =
-  \dgFun(\Acat^{\op}, \dgCh(k))
-\]
-and its dg-enrichement is given by
-\[
+  &=
+  \dgFun(\Acat^\op, \dgCh(k))
+\intertext{the~{\klinear} dg-category of right~{\dgmodules{$\Acat$}}, and by}
   \dgdgMod{\Acat}
+  &=
+  \dgdgFun(\Acat^\op, \dgCh(k))
+\end{align*}
+its dg-enrichement.
+The category~$\dgMod{\Acat}$ is abelian and (co)complete;
+all (co)limits are computed pointwise.
+Recall that
+\[
+  \Cycles^0(\dgdgMod{\Acat})
   =
-  \dgdgFun(\Acat^{\op}, \dgCh(k)) \,.
+  \dgMod{\Acat} \,.
 \]
-The category~$\dgMod{\Acat}$ is abelian, complete and cocomplete, and all (co)limits are computed pointwise.
+(See \cref{detailed dg review} for a more detailed review on dg-categories.)
+
 
 
 
@@ -594,7 +477,7 @@ belonging to~$\Sfrob_k$, where
   \end{bmatrix} \,.
 \]
 
-The~{\klinear} situation
+The~{\klinear} functors and natural transformations
 \begin{alignat*}{3}
   I, [1]
   &\colon
@@ -607,7 +490,7 @@ The~{\klinear} situation
   &
   \;
   p &\colon I \To [1]
-\intertext{extends into the dg-world as}
+\intertext{extends to dg-functors and dg-natural transformations}
   I, [1]
   &\colon
   \dgCh(k)
@@ -619,7 +502,7 @@ The~{\klinear} situation
   &
   \;
   p &\colon I \To [1]
-\intertext{and by applying~$\dgFun(\Acat^{\op}, -)$ we arrive at the~{\klinear} situation}
+\intertext{and by applying~$\dgFun(\Acat^{\op}, -)$ we arrive at {\klinear} functors and natural transformation}
   I, [1]
   &\colon
   \dgMod{\Acat}
@@ -662,7 +545,7 @@ The short exact sequence~\eqref{ses of dg modules} belongs to a Frobenus exact s
 This description of~$\Homology^0(\dgdgMod{\Acat})$ and its triangulated structure has two consequences we will need:
 \begin{enumerate}
   \item
-    A morphsim~$f \colon M \to N$ in~$\dgMod{\Acat}$ vanishes in~$\Homology^0(\dgdgMod{\Acat})$ if and only it factors through some~{\injective{$\Sfrob_{\Acat}$}} object~$I$ of~$\dgMod{\Acat}$, i.e.\ if there exists in~$\dgMod{\Acat}$ a commutative diagram of the following form:
+    A morphism~$f \colon M \to N$ in~$\dgMod{\Acat}$ vanishes in~$\Homology^0(\dgdgMod{\Acat})$ if and only it factors through some~{\injective{$\Sfrob_{\Acat}$}} object~$I$ of~$\dgMod{\Acat}$, i.e.\ if there exists in~$\dgMod{\Acat}$ a commutative diagram of the following form:
     \[
       \begin{tikzcd}[column sep = small]
         M
@@ -811,7 +694,7 @@ We can then try to understand the original triangulated category~$\Tcat$ through
 
 
 
-\subsection{Cones as Derived Cokernels}
+\subsection{Cones as Derived Cokernels (DG Version)}
 
 Recall that if~$f \colon x \to y$ is a morphism in an (pre)additive category~$\Acat$ then its cokernel (which does not need to exists) can be thought of in two equivalent ways:
 \begin{itemize}
@@ -890,8 +773,8 @@ in the category~$\Ch(k)$ where
 \]
 
 \begin{lemma}
-  Every morphism of chain complexes~$f \colon X \to Y$ results in the pushout
-
+  \label{cone as pushout}
+  Any morphism of chain complexes~$f \colon X \to Y$ gives a pushout diagram
   \[
     \begin{tikzcd}[ampersand replacement = \&, row sep = large, column sep = huge]
       X
@@ -912,50 +795,8 @@ in the category~$\Ch(k)$ where
 \end{lemma}
 
 \begin{proof}
-  We calculate the pushout as
-  \begin{align*}
-    {}&
-    \left.
-    \left(
-      X \oplus X[1] \oplus Y,
-      \begin{bmatrix}
-        0 & 1 & 0   \\
-        0 & 0 & 0   \\
-        0 & 0 & d_Y
-      \end{bmatrix}
-    \right)
-    \middle/
-    \gen*{
-      \begin{bmatrix}
-           x  \\
-         d(x) \\
-        -f(x)
-      \end{bmatrix}
-    \suchthat*
-      x \in X
-    }
-    \right.
-    \\
-    \cong{}&
-    \left(
-      X[1] \oplus Y,
-      \begin{bmatrix}
-        -d_X & 0   \\
-         f   & d_Y
-      \end{bmatrix}
-    \right)
-    \\
-    ={}&
-    C(f)
-  \end{align*}
-  as claimed.
+  See \cref{cone as pushout proof}.
 \end{proof}
-
-\begin{remark}
-  The above result is (a posteri) not surprising:
-  It is a standard statement from homological algebra that for a morphism of chain complexes~$f \colon X \to Y$ the data of a morphism~$h \colon C(f) \to Z$ is the same as that of a morphism~$g \colon Y \to Z$ together with a null homotopy of the composition~$g \circ f \colon X \to Z$.
-  Whence~$C(f)$ corepresents morphisms going out of~$Y$ whose composition with~$f$ are zero \enquote{up to homotopy}.
-\end{remark}
 
 We hence find that the pushout
 \[
@@ -963,6 +804,7 @@ We hence find that the pushout
     M
     \arrow{r}[above]{f}
     \arrow{d}[left]{i_M}
+      \arrow[phantom]{dr}{\ulcorner}
     &
     N
     \arrow{d}
@@ -985,6 +827,7 @@ We have the following commutative diagram in which the left hand side is a pusho
     M
     \arrow{r}[above]{i_M}
     \arrow{d}[left]{f}
+    \arrow[phantom]{dr}{\ulcorner}
     &
     IM
     \arrow{r}[above]{p_M}
@@ -1007,7 +850,7 @@ We have the following commutative diagram in which the left hand side is a pusho
     {}
   \end{tikzcd}
 \]
-It follows from the standard lemma of homological algebra that we can extend the above diagram to a commutative diagram
+A standard lemma from homological algebra asserts that we can extend the above diagram to a commutative diagram
 \[
   \begin{tikzcd}
     0
@@ -1016,6 +859,7 @@ It follows from the standard lemma of homological algebra that we can extend the
     M
     \arrow{r}[above]{i_M}
     \arrow{d}[left]{f}
+    \arrow[phantom]{dr}{\ulcorner}
     &
     IM
     \arrow{r}[above]{p_M}
@@ -1061,9 +905,9 @@ We have thus seen that one can think about the cone in~$\Homology^0(\dgdgMod{\Ac
 
 
 
-\subsection{Extending to~$\dgdgMod{\Acat}$}
+\subsection{Generalizing Cones}
 
-The object~$C(f)$ of the dg-category~$\Bcat \defined \dgdgMod{\Acat}$ gives a corepresentable dg-functor, i.e.~left dg-module
+The object~$C(f)$ of the dg-category~$\Bcat \defined \dgdgMod{\Acat}$ gives a corepresentable dg-functor, i.e.\ a~left dg-module
 \[
   \widehat{C}
   \defined
@@ -1111,5 +955,227 @@ This allows us to talk about cones of morphisms in dg-categories.
 
 
 
+
+\appendix
+
+
+
+
+
+\section{Appendix}
+
+
+
+\subsection{Proof of \cref{epi in triangulated splits}}
+\label{epi in triangulated splits proof}
+
+Let~$f \colon x \to y$ be an epimorphism in a triangulated category~$\Tcat$.
+We may complete~$f$ to a distinguished triangle
+\[
+  x
+  \xlongto{f}
+  y
+  \xlongto{g}
+  z
+  \xlongto{h}
+  \Sigma(x) \,.
+\]
+The composition of any two morphisms in a distinguished triangle vanishes, so~$gf = 0$.
+It follows that~$g = 0$ since~$f$ is an epimorphism.
+By applying the homological functor~$\Tcat(y,-)$ to this distinguished triangle we arrive at the followig long exact sequence:
+\[
+  \dotsb
+  \to
+  \Tcat(y,x)
+  \xlongto{f_*}
+  \Tcat(y,y)
+  \xlongto{0}
+  \Tcat(y,z)
+  \to
+  \dotsb
+\]
+We find that for~$\id_y \in \Tcat(y,y)$ there exists some~$s \in \Tcat(y,x)$ with~$\id_y = f_*(s) = fs$.
+
+
+
+\subsection{Proof of \cref{when the derived is abelian}}
+\label{when the derived is abelian proof}
+
+\begin{implicationslist}
+\item[\ref{original is semisimple}~$\implies$~\ref{derived is abelian}:]
+  We realize~$\Derived(\Acat)$ by first passing from the category of chain complexes~$\Ch(\Acat)$ to its homotopy category~$\KHomotopy(\Acat)$ and then localizing at the class of quasi-isomorphisms.
+  
+  Every chain complex~$X \in \Ob(\Ch(\Acat))$ splits%
+  \footnote{Recall that a chain complex~$X$ is \defemph{split} if it can be (up to isomorphism) degreewise decomposed as~$X^n = B^n \oplus H^n \oplus B^{n+1}$ such that the differential of~$X$ is with respect to this decomposition given by~$\begin{bsmallmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bsmallmatrix}$.
+  Then~$\Cycles^n(X) = B^n \oplus H^n$,~$\Boundaries^n(X) = B^n$ and~$\Homology^n(X) \cong H^n$.
+  The claimed decompositon~$X = X' \oplus X''$ is then given degreewise by~$(X')^n = B^n \oplus B^{n+1}$ with differential~$\begin{bsmallmatrix} 0 & 1 \\ 0 & 0 \end{bsmallmatrix}$ and~$(X'')^n = H^n$.}
+  since~$\Acat$ is semisimple and can thus be decomposed as~$X = X' \oplus X''$ where~$X'$ is split acyclic and~$X''$ has zero differential.
+  In the homotopy category~$\KHomotopy(\Acat)$ the chain complex~$X'$ becomes zero as it is split acyclic and hence contractible.
+  Every isomorphism class in~$\KHomotopy(\Acat)$ is therefore represented by a chain complex with zero differential, i.e.\ an object of~$\Acat^\Integer$.
+  No two morphisms between such chain complexes become identified in~$\KHomotopy(\Acat)$ so that the categories~$\KHomotopy(\Acat)$ and~$\Acat^\Integer$ are equivalent.
+  We note that this equivalence is indeed given by~$\Homology^* \colon \KHomotopy(\Acat) \to \Acat^\Integer$.
+  
+  We also see that a quasi-isomorphism between chain complexes with zero differentials must already be an isomorphism.
+  We therefore see that~$\Derived(\Acat)$ is just~$\KHomotopy(\Acat)$ again.
+  
+\item[\ref{derived is abelian}~$\implies$~\ref{derived is semisimple abelian}:]
+  This follows from \cref{triangulated abelian is semisimple}.
+
+\item[\ref{derived is semisimple abelian}~$\implies$~\ref{original is semisimple}]
+  We first observe that an abelian category~$\Bcat$ is semisimple if and only if every morphism~$f \colon x \to y$ in~$\Bcat$ admits a \defemph{pseudoinverse}~$g \colon y \to x$ satisfying~$fgf = f$ and~$gfg = g$:
+  If every morphism~$f$ in~$\Bcat$ admits such a pseudoinverse~$g$ then it follows for every epimorphism~$f$ in~$\Bcat$ from~$fgf = f$ that~$fg = \id$ so that~$f$ splits. 
+  If on the other hand~$\Bcat$ is semisimple and~$f \colon x \to y$ is any morphism in~$\Bcat$ then we have decompositions~$x = x' \oplus \ker(f)$ and~$y = y' \oplus \im(f)$ with~$f$ inducing an isomorphism~$x' \to \im(f)$.
+  The inverse~$\im(f) \to x'$ composed with the projection~$y \to \im(f)$ and the inclusion~$x' \to x$ then give the desired pseudoinverse~$g \colon y \to x$.
+  
+  By assumption every morphism in~$\Derived(\Acat)$ admits a pseudoinverse.
+  Every morphism~$f$ in~$\Acat$ hence admits a pseudoinverse~$g$ in~$\Derived(\Acat)$ (where we regard~$\Acat$ as chain complexes concentrated in degree~$0$) which becomes the pseudoinverse~$\Homology_0(g)$ to~$f$ in~$\Acat$.
+  This shows that every morphism in~$\Acat$ admits a pseudoinverse, so that~$\Acat$ is semisimple.
+\qedhere
+\end{implicationslist}
+
+
+
+\subsection{(Counter)example to \cref{nonexistence of pushouts}}
+\label{nonexistence of pushouts example}
+
+In the category~$\Derived(\Integer) = \Derived(\Mod{\Integer})$ the nonzero morphism~$f \colon \Integer/2 \to \Integer/4$ does not admit a cokernel:
+Suppose otherwise that~$c \colon \Integer/4 \to C$ is a such a cokernel.
+Then~$c$ is a split epimorphism in~$\Derived(\Integer)$ by \cref{epi in triangulated splits}.
+It follows that~$\Homology^0(c) \colon \Integer/4 \to \Homology^0(C)$ is a split epimorphism in~$\Mod{\Integer}$.
+But~$\Integer/4$ is indecomposable, so it follows that~$\Homology^0(c) = 0$ or~$\Homology^0(c)$ is an isomorphism.
+
+If~$\Homology^0(c) = 0$ then we consider the nonzero morphism~$g \colon \Integer/4 \to \Integer/2$.
+It follows from~$g \circ f = 0$ that~$g$ factors trough~$c$ in~$\Derived(\Integer)$ and therefore factors through~$\Homology^0(c)$ in~$\Mod{\Integer}$.
+But this is not possible since~$\Homology^0(c) = 0$ while~$g \neq 0$.
+
+Suppose now that~$\Homology^0(c)$ is an isomorphism.
+It follows from~$c \circ f = 0$ in~$\Derived(\Integer)$ that~$\Homology^0(c) \circ f = 0$ in~$\Mod{\Integer}$.
+It now further follows that~$f = 0$ which is wrong.
+
+
+
+\subsection{More Detailed Review on DG-Categories}
+\label{detailed dg review}
+
+The~{\klinear} category~$\Ch(k)$ of chain complexes becomes a symmetric monoidal category with respect to the tensor product of chain complexes.
+A dg-category~$\Acat$ is a category enriched over~$(\Ch(k), \tensor)$.
+More explicitely, a dg-category~$\Acat$ consists of a class of objects~$\Ob(\Acat)$, for any two objects~$x, y \in \Acat$ a chain complex~$\Acat(x,y)$, for any three objects~$x, y, z \in \Ob(\Acat)$ a morphism of chain complexes
+\[
+  (-) \circ (-)
+  \colon
+  \Acat(y,z) \tensor \Acat(x,y)
+  \to
+  \Acat(x,z)
+\]
+satisfying the usual associativity diagram, and for every object~$x \in \Ob(\Acat)$ an element~$1_x \in \Cycles^0(\Acat(x,y))$ satifying the usual identity diagrams.
+As an example we enrich~$\Ch(k)$ into a dg-category~$\dgCh(k)$ with~$\dgCh(k)(X,Y) = \dgHom(X,Y)$ being the usual~$\Hom$-chain complex.
+
+To any dg-category~$\Acat$ we can associated the~{\klinear} categories~$\Cycles^0(\Acat)$ and~$\Homology^0(\Acat)$ that are given by~$\Ob(\Cycles^0(\Acat)) = \Ob(\Homology^0(\Acat)) = \Ob(\Acat)$ and
+\[
+  \Cycles^0(\Acat)(x,y)
+  =
+  \Cycles^0(\Acat(x,y))
+  \qquad\text{and}\qquad
+  \Homology^0(\Acat)(x,y)
+  =
+  \Homology^0(\Acat(x,y)) \,.
+\]
+As an example we have~$\Cycles^0(\dgCh(k)) = \Ch(k)$ and~$\Homology^0(\dgCh(k)) = \KHomotopy(k)$.
+
+This examples motivates that one should think about~$\Cycles^0(\Acat)$ as the \defemph{underlying~{\klinear} category} of~$\Acat$, and as the elements of~$\Cycles^0(\Acat(x,y))$ as the \enquote{actual morphisms} from~$x$ to~$y$.
+The category~$\Homology^0(\Acat)$ is the \defemph{homotopy category} of~$\Acat$.
+
+A \defemph{dg-functor}~$F \colon \Acat \to \Bcat$ is given by a map~$F \colon \Ob(\Acat) \to \Ob(\Bcat)$ and morphisms of chain complexes~$F_{x,y} \colon \Acat(x,y) \to \Bcat(F(x), F(y))$ for any two objects~$x, y \in \Ob(\Acat)$, satisfying the usual axioms.
+Every dg-functor~$F \colon \Acat \to \Bcat$ induces~{\klinear} functors~$\Cycles^0(\Acat) \to \Cycles^0(\Bcat)$ and~$\Homology^0(\Acat) \to \Homology^0(\Bcat)$.
+
+A dg-natural transformation~$\alpha \colon F \To G$ between dg-functors~$F, G \colon \Acat \to \Bcat$ assigns to is a family~$\alpha = (\alpha_x)_{x \in \Ob(\Acat)}$ of \enquote{actual morphisms}~$\alpha_x \in \Cycles^0(\Bcat(F(x), G(x)))$ with~$\alpha_y \circ F(f) = G(f) \circ \alpha_x$ for every~$f \in \Acat(x,y)$.
+We get a~{\klinear} abelian category~$\dgFun(\Acat, \Bcat)$ whose objects are dg-functors~$\Acat \to \Bcat$ and whose morphisms are dg-natural transformations.
+This category can be enriched into a dg-category~$\dgdgFun(\Acat, \Bcat)$ with
+\[
+  \dgdgFun(\Acat, \Bcat)(F,G)^i
+  =
+  \left\{
+    (\alpha_x)_{x \in \Ob(\Acat)}
+  \suchthat*
+    \begin{tabular}{@{}c@{}}
+      $\alpha_x \in \Bcat(F(x), G(x))^i$ with \\
+      $\alpha_y \circ F(f) = (-1)^{ij} G(f) \circ \alpha_x$ \\
+      for every~$f \in \Acat(x,y)^j$
+    \end{tabular}
+  \right\}
+\]
+being a subcomplex of~$\prod_{x \in \Ob(\Acat)} \Bcat(F(x), G(x))$.
+This~{\klinear} category can be enriched in a dg-category~$\dgdgFun(\Acat, \Bcat)$.
+Then in particular
+\[
+  \Cycles^0(\dgdgFun(\Acat, \Bcat))
+  =
+  \dgFun(\Acat, \Bcat) \,,
+\]
+so that~$\dgFun(\Acat, \Bcat)$ is the underlying~{\klinear} category of~$\dgdgFun(\Acat, \Bcat)$.
+
+For a dg-category~$\Acat$ a \defemph{(right)~{\dgmodule{$\Acat$}}} is a dg-functor~$M \colon \Acat^{\op} \to \dgCh(k)$.
+This means that at every object~$x \in \Ob(\Acat)$ we have a chain complex~$M_x$, and for every~$f \in \Acat(x,y)^i$ we have associated a map~$M(f) \colon M(y) \to M(x)$ of degree~$i$ such that~$M(g \circ f) = (-1)^{ij} M(f) \circ M(g)$ for all~$f \in \Acat(x,y)^i$ and~$g \in \Acat(y,z)^j$.
+The category of~{\dgmodules{$\Acat$}} is given by
+\[
+  \dgMod{\Acat}
+  =
+  \dgFun(\Acat^{\op}, \dgCh(k))
+\]
+and its dg-enrichement is given by
+\[
+  \dgdgMod{\Acat}
+  =
+  \dgdgFun(\Acat^{\op}, \dgCh(k)) \,.
+\]
+The category~$\dgMod{\Acat}$ is abelian, complete and cocomplete, and all (co)limits are computed pointwise.
+
+
+\subsection{Proof of \cref{cone as pushout}}
+\label{cone as pushout proof}
+
+We calculate the pushout as
+\begin{align*}
+  {}&
+  \left.
+  \left(
+    X \oplus X[1] \oplus Y,
+    \begin{bmatrix}
+      0 & 1 & 0   \\
+      0 & 0 & 0   \\
+      0 & 0 & d_Y
+    \end{bmatrix}
+  \right)
+  \middle/
+  \gen*{
+    \begin{bmatrix}
+          x  \\
+        d(x) \\
+      -f(x)
+    \end{bmatrix}
+  \suchthat*
+    x \in X
+  }
+  \right.
+  \\
+  \cong{}&
+  \left(
+    X[1] \oplus Y,
+    \begin{bmatrix}
+      -d_X & 0   \\
+        f   & d_Y
+    \end{bmatrix}
+  \right)
+  \\
+  ={}&
+  C(f)
+\end{align*}
+as claimed.
+
+\begin{remark}
+  The claim of \cref{cone as pushout} is (a posteriori) not  surprising:c
+  It is a standard statement from homological algebra that for a morphism of chain complexes~$f \colon X \to Y$ the data of a morphism~$h \colon C(f) \to Z$ is the same as that of a morphism~$g \colon Y \to Z$ together with a null homotopy of the composition~$g \circ f \colon X \to Z$.
+  Whence~$C(f)$ corepresents morphisms going out of~$Y$ whose composition with~$f$ are zero \enquote{up to homotopy}.
+\end{remark}
 
 \end{document}
