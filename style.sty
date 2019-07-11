@@ -56,6 +56,7 @@
 \newcommand{\dgmodules}[1]{dg\nobreakdash-#1\nobreakdash-modules}
 \newcommand{\injective}[1]{#1\nobreakdash-injective}
 \newcommand{\module}[1]{#1\nobreakdash-module}
+\newcommand{\shaped}[1]{#1\nobreakdash-shaped}
 \newcommand{\stable}[1]{#1\nobreakdash-stable}
 
 % arrows
@@ -67,19 +68,24 @@
 \newcommand{\gencat}{\mathcal}
 \newcommand{\Acat}{\gencat{A}}
 \newcommand{\Bcat}{\gencat{B}}
+\newcommand{\Ccat}{\gencat{C}}
 \newcommand{\Tcat}{\gencat{T}}
 
 % special categories
 \newcommand{\specialcat}{\mathbf}
+\newcommand{\suline}[1]{\underline{\vphantom{\mathstrut}#1}}
+
 \newcommand{\Ch}{\specialcat{Ch}}
 \newcommand{\dgCh}{\underline{\specialcat{Ch}}}
 \newcommand{\dgFun}{\specialcat{dgFun}}
-\newcommand{\dgdgFun}{\underline{\specialcat{dgFun}}}
+\newcommand{\dgdgFun}{\underline{\smash{\specialcat{dgFun}}}}
 \newcommand{\dgMod}[1]{\specialcat{dgMod}_{#1}}
-\newcommand{\dgdgMod}[1]{\underline{\specialcat{dgMod}}_{#1}}
+\newcommand{\dgdgMod}[1]{\underline{\smash{\specialcat{dgMod}}}_{#1}}
 \newcommand{\Derived}{\specialcat{D}}
-\newcommand{\KHomotopy}{\specialcat{K}}
 \newcommand{\Fun}{\specialcat{Fun}}
+\newcommand{\KHomotopy}{\specialcat{K}}
+\newcommand{\Mod}[1]{\specialcat{Mod}_{#1}}
+\newcommand{\Mor}{\specialcat{Mor}}
 \newcommand{\Vect}[1]{#1\text{-}\specialcat{Vect}}
 
 % spaces and sets
@@ -94,16 +100,23 @@
 % functions
 \newcommand{\id}{\mathrm{id}}
 \DeclareMathOperator{\Boundaries}{B}
+\DeclareMathOperator*{\colim}{colim}
 \DeclareMathOperator{\cone}{cone}
 \DeclareMathOperator{\Cycles}{Z}
+\DeclareMathOperator*{\hocolim}{hocolim}
+\DeclareMathOperator*{\holim}{holim}
 \DeclareMathOperator{\Homology}{H}
 
 % binary operators and relations
+\newcommand{\defined}{\coloneqq}
 \renewcommand{\equiv}{\simeq}
+\newcommand{\iso}{\cong}
+\newcommand{\ladjoint}{\mathrel{\dashv}}
 \newcommand{\tensor}{\otimes}
 
 % delimiters
 \DeclarePairedDelimiter{\gen}{\langle}{\rangle}
+\DeclarePairedDelimiter{\hdeg}{\lvert}{\rvert}
 \NewDocumentCommand{\suchthat}{so}{
   \IfValueTF{#2}
   {

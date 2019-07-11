@@ -3,7 +3,7 @@
 
 \titlehead{Graduate Seminar on Representation Theory \hfill July 12, 2019}
 \title{DG-Enhancement of Triangulated~Categories}
-\subtitle{Problems with Triangulated~Categories \\ and How to Circumvent Them}
+\subtitle{Problems with \\ Triangulated and Derived~Categories \\ and How to Circumvent Them}
 \author{Jendrik Stelzner}
 \date{}
 
@@ -23,7 +23,7 @@ By a \defemph{chain complex} we always mean a cochain complex, i.e.\ the differe
 
 
 
-\section{Some Problems with Triangulated Categories}
+\section{Problems with Triangulated Categories}
 
 
 
@@ -34,6 +34,7 @@ By a \defemph{chain complex} we always mean a cochain complex, i.e.\ the differe
 \end{definition}
 
 \begin{lemma}
+  \label{epi in triangulated splits}
   In a triangulated category every epimorphism splits.
 \end{lemma}
 
@@ -173,19 +174,13 @@ The good thing is that there exists by the axioms of a triangulated category som
 commute.
 But by the missing functoriality of the cone this does in general not define a functor~$\cone(f) \colon I \to \Tcat$ and hence not an object of~$\Fun(I, \Tcat)$.
 
-The missing functoriality of the cone of~$\Tcat$ can in general not be fixed, as the following result asserts:
+The missing functoriality of the cone can in general not be fixed, as the following result asserts:
 
 \begin{proposition}
   Let~$\Tcat$ be an idempotent complete triangulated category.
   If~$\Tcat$ admits functorial cones then~$\Tcat$ is abelian and semisimple.
 \end{proposition}
 
-
-
-\subsection{(Non-)Existence of Limits and Colimits}
-
-A triangulated category~$\Tcat$ is in general neither complete nor cocomplete.
-% Given an example where cokernels / pushouts are missing
 
 
 \subsection{Difference between~$\Derived(\Acat)^I$ and~$\Derived(\Acat^I)$}
@@ -202,16 +197,170 @@ This shows that~$\Derived(\Acat)^I$ is abelian but~$\Derived(\Acat^I)$ is not ab
 
 
 
+\subsection{(Non-)Existence of Limits and Colimits}
+
+A triangulated category~$\Tcat$ is in general neither complete nor cocomplete.
+
+We see for example that in the category~$\Derived(\Integer) = \Derived(\Mod{\Integer})$ the nonzero morphism~$f \colon \Integer/2 \to \Integer/4$ does not admit a cokernel:
+Suppose otherwise that~$c \colon \Integer/4 \to C$ is a such a cokernel.
+Then~$c$ splits in~$\Derived(\Integer)$ by \cref{epi in triangulated splits}.
+It follows that~$\Homology^0(c) \colon \Integer/4 \to \Homology^0(C)$ splits in~$\Mod{\Integer}$.
+But~$\Integer/4$ is indecomposable, so it follows that~$\Homology^0(c) = 0$ or~$\Homology^0(c)$ is an isomorphism.
+
+If~$\Homology^0(c) = 0$ then we consider the nonzero morphism~$g \colon \Integer/4 \to \Integer/2$.
+It follows from~$g \circ f = 0$ that~$g$ factors trough~$C$ is~$\Derived(\Integer)$ and therefore factors through~$\Homology^0(C)$ in~$\Mod{\Integer}$.
+But this is not possible since~$\Homology^0(C) = 0$ while~$g \neq 0$.
+
+Suppose that~$\Homology^0(c)$ is an isomorphism.
+It follows from~$c \circ f = 0$ in~$\Derived(\Mod{\Integer})$ that~$\Homology^0(c) \circ f = 0$ in~$\Mod{\Integer}$.
+It now further follows that~$f = 0$ which is wrong.
 
 
-\section{Towards Derivators}
+
+
+
+\section{Solution: Working Derived}
+
+We picture one approach to circumvent the non-functoriality of the cone:
+We denote for any category~$\Ccat$ by~$\Mor(\Ccat)$ its morphism category.
+We have~$\Mor(\Ccat) \iso \Ccat^I$ for the arrow category~$I = (\bullet \to \bullet)$.
+
+
+
+\subsection{Functorial Cones}
+
+We have seen that for a triangulated category~$\Tcat$ there exists in general no cone functor~$\Mor(\Tcat) \to \Tcat$, i.e.\ no cone functor~$\Tcat^I \to \Tcat$.
+But if~$\Tcat = \Derived(\Acat)$ for some abelian category~$\Acat$ then we have seen above that the categories~$\Tcat^I = \Derived(\Acat)^I$ and~$\Derived(\Acat^I)$ are in general not equivalent.
+We can therefore instead try to construct a cone functor~$\cone \colon \Derived(\Acat^I) \to \Derived(\Acat)$.
+
+This is indeed possible:
+We start with the usual cone functor
+\[
+  C
+  \colon
+  \Ch(\Acat)^I
+  \to
+  \Ch(\Acat)
+\]
+which assigns to each morphism~$f \colon X \to Y$ in~$\Ch(\Acat)$ the usual mapping cone
+\[
+  C(f)
+  =
+  \left(
+  X[1] \oplus Y,
+  \begin{bmatrix}
+    -d_X & 0   \\
+      f   & d_Y
+  \end{bmatrix}
+\right) \,.
+\]
+and to each commmutative diagram
+\[
+  \begin{tikzcd}
+    X
+    \arrow{r}[above]{g}
+    \arrow{d}[left]{f}
+    &
+    X'
+    \arrow{d}[right]{f'}
+    \\
+    Y
+    \arrow{r}[above]{h}
+    &
+    Y'
+  \end{tikzcd}
+\]
+the induced morphism
+\[
+  C(g,h)
+  \colon
+  C(f)
+  \xlongto{ \begin{bmatrix} g & 0 \\ 0 & h \end{bmatrix} }
+  C(f') \,.
+\]
+This functor is additive, and under the identification of~$\Ch(\Acat)^I \iso \Ch(\Acat^I)$ this cone functor~$C$ respect quasi-isomorphisms:
+The quasi-isomorphism in~$\Ch(\Acat^I)$ correspond to a pointwise quasi-isomorphism in~$\Ch(\Acat)^I$.
+If~$(g,h) \colon f \to f'$ in~$\Ch(\Acat)^I$ is such a pointwise quasi-isomorphism, i.e.\ if both~$g$ and~$h$ are quasi-isomorphism, then
+\[
+  \begin{tikzcd}[sep = large, ampersand replacement = \&]
+    0
+    \arrow{r}
+    \&
+    Y
+    \arrow{r}[above]{\begin{bsmallmatrix} 0 \\ 1 \end{bsmallmatrix}}
+    \arrow{d}[left]{h}
+    \&
+    C(f)
+    \arrow{r}[above]{\begin{bsmallmatrix} -1 & 0 \end{bsmallmatrix}}
+    \arrow{d}[right]{C(g,h)}
+    \&
+    X[1]
+    \arrow{r}
+    \arrow{d}[right]{g}
+    \&
+    0
+    \\
+    0
+    \arrow{r}
+    \&
+    Y'
+    \arrow{r}[above]{\begin{bsmallmatrix} 0 \\ 1 \end{bsmallmatrix}}
+    \&
+    C(f')
+    \arrow{r}[above]{\begin{bsmallmatrix} -1 & 0 \end{bsmallmatrix}}
+    \&
+    X'[1]
+    \arrow{r}
+    \&
+    0
+  \end{tikzcd}
+\]
+is a commutative diagram with short exact rows.
+We get an induced ladder diagram from the functoriality of the long exact cone sequence, with~$h$ and~$g$ inducing vertical isomorphisms.
+It follows from the five lemma that~$C(g,h)$ also induces isomorphisms in homology, i.e.\ is a quasi-isomorphism.
+It follows that the cone functor~$C$ descends to an additive functor
+\[
+  C
+  \colon
+  \Derived\bigl( \Acat^I \bigr)
+  \to
+  \Derived( \Acat )
+\]
+where~$\Derived(\Acat^I) = \Derived(\Mor(\Acat))$.
+
+
+
+\subsection{Colimits and Limits}
+
+Let~$I$ be an index category and let~$\Delta \colon \Ccat \to \Ccat^I$ be the constant diagram functor.
+Recall that the existence of (co)limits of~{\shaped{$I$}} diagrams in~$\Ccat$ is equivalent to~$\Delta$ admiting adjoints
+\[
+  \colim_I \ladjoint \Delta \ladjoint \lim_I \,.
+\]
+That a derived category~$\Derived(\Acat)$ does in general not admit (co)limits can be circumvented by considering \defemph{homotopy (co)limits} instead:
+
+The constant diagram functor~$\Delta \colon \Ch(\Acat) \to \Ch(\Acat)^I \cong \Ch(\Acat^I)$ is additive and respects quasi-isomorphisms and hence descends to an additive functor
+\[
+  \Delta
+  \colon
+  \Derived(\Acat) \to \Derived(\Acat^I) \,.
+\]
+If~$\Acat$ admits all (co)limits of shape~$\Acat^I$ then it follows 
+This functor admits both a left and a right adjoint:
+\[
+  \hocolim_I \ladjoint \Delta \ladjoint \holim_I \,.
+\]
+
+
+
+\subsection{Description as Total Derived Functors}
 
 
 
 
 
 
-\section{Towards DG-Enhancement}
+\section{Solution: DG-Enhancement}
 
 In the following we denote by~$k$ some commutative ring.
 
@@ -251,7 +400,7 @@ As an example we have~$\Cycles^0(\dgCh(k)) = \Ch(k)$ and~$\Homology^0(\dgCh(k)) 
 
 This examples motivates that one should think about~$\Cycles^0(\Acat)$ as the \enquote{underlying~{\klinear} category of~$\Acat$}, and as the elements of~$\Cycles^0(\Acat(x,y))$ as the \enquote{actual morphisms} from~$x$ to~$y$.
 
-For two dg-categories~$\Acat$,~$\Bcat$ a \defemph{dg-functor}~$F \colon \Acat \to \Bcat$ is given by a map~$F \colon \Ob(\Acat) \to \Ob(\Bcat)$ together with morphisms of chain complexes~$F_{x,y} \colon \Acat(x,y) \to \Bcat(F(x), F(y))$ for any two objects~$x, y \in \Ob(\Acat)$, satisfying the usual axioms.
+A \defemph{dg-functor}~$F \colon \Acat \to \Bcat$ is given by a map~$F \colon \Ob(\Acat) \to \Ob(\Bcat)$ and morphisms of chain complexes~$F_{x,y} \colon \Acat(x,y) \to \Bcat(F(x), F(y))$ for any two objects~$x, y \in \Ob(\Acat)$, satisfying the usual axioms.
 Every dg-functor~$F \colon \Acat \to \Bcat$ induces~{\klinear} functors~$\Cycles^0(\Acat) \to \Cycles^0(\Bcat)$ and~$\Homology^0(\Acat) \to \Homology^0(\Bcat)$.
 
 A dg-natural transformation~$\alpha \colon F \To G$ between dg-functors~$F, G \colon \Acat \to \Bcat$ assigns to is a family~$\alpha = (\alpha_x)_{x \in \Ob(\Acat)}$ of \enquote{actual morphisms}~$\alpha_x \in \Cycles^0(\Bcat(F(x), G(x)))$ with~$\alpha_y \circ F(f) = G(f) \circ \alpha_x$ for every~$f \in \Acat(x,y)$.
@@ -288,8 +437,8 @@ The category~$\dgMod{\Acat}$ is abelian, complete and cocomplete, and all (co)li
 
 \subsection{Review on Frobenius Exact Structures}
 
-The abelian category~$\Ch(k)$ admits a Frobenius exact structure~$\Sfrob$ whose associated~{\stable{$\Sfrob$}} triangulated category is precisely~$\KHomotopy(k)$.
-For every chain complex~$X$ its \defemph{\injective{$\Sfrob$} envelope} is given by the chain complex
+The abelian category~$\Ch(k)$ admits a Frobenius exact structure~$\Sfrob_k$ whose associated~{\stable{$\Sfrob_k$}} triangulated category is precisely~$\KHomotopy(k)$.
+For every chain complex~$X$ its \defemph{\injective{$\Sfrob_k$} envelope} is given by the chain complex
 \[
   IX
   =
@@ -314,7 +463,7 @@ which fits into the short exact sequence
   \to
   0
 \end{equation}
-belonging to~$\Sfrob$, where
+belonging to~$\Sfrob_k$, where
 \[
   i_X
   =
@@ -366,11 +515,11 @@ that gives at every point~$x \in \Ob(\Acat)$ the short exact sequence of chain c
   0
 \]
 from~\eqref{ses of chain complexes} with~$X = M_x$.
-The short exact sequence~\eqref{ses of dg modules} belongs to a Frobenus exact structure~$\Sfrob$ on~$\dgMod{\Acat}$ whose stable triangulated category is precisely the homotopy category~$\Homology^0(\dgdgMod{\Acat})$, with~$i_M \colon M \to IM$ being an~{\injective{$\Sfrob$}} envelope of~$M$ for every~{\dgmodule{$\Acat$}}~$M$.
+The short exact sequence~\eqref{ses of dg modules} belongs to a Frobenus exact structure~$\Sfrob_{\Acat}$ on~$\dgMod{\Acat}$ whose stable triangulated category is precisely the homotopy category~$\Homology^0(\dgdgMod{\Acat})$, with~$i_M \colon M \to IM$ being an~{\injective{$\Sfrob_{\Acat}$}} envelope of~$M$ for every~{\dgmodule{$\Acat$}}~$M$.
 This description of~$\Homology^0(\dgdgMod{\Acat})$ and its triangulated structure has two consequences we will need:
 \begin{enumerate}
   \item
-    A morphsim~$f \colon M \to N$ in~$\dgMod{\Acat}$ vanishes in~$\Homology^0(\dgdgMod{\Acat})$ if and only it factors through some~{\injective{$\Sfrob$}} object~$I$ of~$\dgMod{\Acat}$, i.e.\ if there exists in~$\dgMod{\Acat}$ a commutative diagram of the following form:
+    A morphsim~$f \colon M \to N$ in~$\dgMod{\Acat}$ vanishes in~$\Homology^0(\dgdgMod{\Acat})$ if and only it factors through some~{\injective{$\Sfrob_{\Acat}$}} object~$I$ of~$\dgMod{\Acat}$, i.e.\ if there exists in~$\dgMod{\Acat}$ a commutative diagram of the following form:
     \[
       \begin{tikzcd}[column sep = small]
         M
@@ -389,7 +538,7 @@ This description of~$\Homology^0(\dgdgMod{\Acat})$ and its triangulated structur
         {}
       \end{tikzcd}
     \]
-    The morphism~$M \to I$ factors through the morphism~$i_M \colon M \to IM$ since we have by the definition of an~{\injective{$\Sfrob$}} object the following diagram:
+    The morphism~$M \to I$ factors through the morphism~$i_M \colon M \to IM$ since we have by the definition of an~{\injective{$\Sfrob_{\Acat}$}} object the following diagram:
     \[
       \begin{tikzcd}
         {}
@@ -457,7 +606,7 @@ This description of~$\Homology^0(\dgdgMod{\Acat})$ and its triangulated structur
         0
       \end{tikzcd}
     \]
-    be be a commutative diagram in~$\dgMod{\Acat}$ whose rows are contained in~$\Sfrob$ and where the left hand square is a pushout square.
+    be be a commutative diagram in~$\dgMod{\Acat}$ whose rows are contained in~$\Sfrob_{\Acat}$ and where the left hand square is a pushout square.
     Then the resulting sequence
     \[
       M
@@ -624,12 +773,12 @@ in the category~$\Ch(k)$ where
       IX
       \arrow{r}[below]{\begin{bsmallmatrix} -d_X & 1 \\ f & 0 \end{bsmallmatrix}}
       \&
-      C^f
+      C(f)
     \end{tikzcd}
   \]
-  where~$C^f$ denotes the usual mapping cone
+  where~$C(f)$ denotes the usual mapping cone
   \[
-    C^f
+    C(f)
     =
     \left(
     X[1] \oplus Y,
@@ -676,15 +825,15 @@ in the category~$\Ch(k)$ where
     \right)
     \\
     ={}&
-    C^f
+    C(f)
   \end{align*}
   as claimed.
 \end{proof}
 
 \begin{remark}
   The above results is (a posteri) not surprising:
-  It is a standard statement from homological algebra that for a morphism of chain complexes~$f \colon X \to Y$ the data of a morphism~$h \colon C^f \to Z$ is the same as that of a morphism~$g \colon Y \to Z$ together with a nullhomotopy of the composition~$g \circ f \colon X \to Z$.
-  Whence~$C^f$ corepresents morphisms going out of~$Y$ whose composition with~$f$ are zero \enquote{up to homotopy}.
+  It is a standard statement from homological algebra that for a morphism of chain complexes~$f \colon X \to Y$ the data of a morphism~$h \colon C(f) \to Z$ is the same as that of a morphism~$g \colon Y \to Z$ together with a nullhomotopy of the composition~$g \circ f \colon X \to Z$.
+  Whence~$C(f)$ corepresents morphisms going out of~$Y$ whose composition with~$f$ are zero \enquote{up to homotopy}.
 \end{remark}
 
 We hence find that the pushout
@@ -700,12 +849,12 @@ We hence find that the pushout
     IM
     \arrow{r}
     &
-    C^f
+    C(f)
   \end{tikzcd}
 \]
-is given by~$(C^f)_x = C^{f_x}$ at every~$x \in \Ob(\Acat)$, i.e.\ the~{\dgmodule{$\Acat$}}~$C^f$ is pointwise the usual mapping cone of chain complexes.
+is given by~$(C(f))_x = C(f_x)$ at every~$x \in \Ob(\Acat)$, i.e.\ the~{\dgmodule{$\Acat$}}~$C(f)$ is pointwise the usual mapping cone of chain complexes.
 
-We can see that~$C^f$ is actually the cone of~$f$ in the triangulated category~$\Homology^0(\dgdgMod{\Acat})$:
+We see that~$C(f)$ is actually the cone of~$f$ in the triangulated category~$\Homology^0(\dgdgMod{\Acat})$:
 We have the following commutative diagram in which the left hand side is a pushout, and where the upper row is exact and contained in the Frobenius exact structure of~$\dgMod{\Acat}$:
 \[
   \begin{tikzcd}
@@ -730,7 +879,7 @@ We have the following commutative diagram in which the left hand side is a pusho
     N
     \arrow{r}
     &
-    C^f
+    C(f)
     &
     {}
     &
@@ -763,7 +912,7 @@ It follows from the standard lemma of homological algebra that we can extend the
     N
     \arrow{r}
     &
-    C^f
+    C(f)
     \arrow[dashed]{r}
     &
     M[1]
@@ -780,18 +929,63 @@ We have seen in the previous review on Frobenius exact structures that
   \xlongto{f}
   N
   \to
-  C^f
+  C(f)
   \to
   M[1]
 \]
 is therefore a distinguished triangle in~$\Homology^0(\dgdgMod{\Acat})$.
-This entails that~$C^f$ is a cone of~$f$ in~$\Homology^0(\dgdgMod{\Acat})$.
+This entails that~$C(f)$ is a cone of~$f$ in~$\Homology^0(\dgdgMod{\Acat})$.
 
 We have thus seen that one can think about the cone in~$\Homology^0(\dgdgMod{\Acat})$ as a kind of \enquote{derived cokernel} of~$f$, coming from a pushout in~$\dgMod{\Acat}$ that was choosen as a \enquote{cokernel up to homotopy}.
 
 
 
 \subsection{Extending to~$\dgdgMod{\Acat}$}
+
+The object~$C(f)$ of the dg-category~$\Bcat \defined \dgdgMod{\Acat}$ gives a corepresentable dg-functor, i.e.~left dg-module
+\[
+  \widehat{C}
+  \defined
+  \Bcat(C(f), -)
+  \colon
+  \Bcat
+  \to
+  \dgCh(k) \,.
+\]
+At every object~$P \in \Ob(\Bcat)$ this left dg-module is given by the chain complex~$\widehat{C}(P)$ which is given as a graded module by
+\[
+  \widehat{C}(P)
+  =
+  \Bcat(N,P)[1] \oplus \Bcat(M,P)
+\]
+differential
+\[
+  d_{\widehat{C}(P)}
+  =
+  \begin{bmatrix}
+    d_{\Bcat(N,P)} &  0               \\
+    (-) \circ f    & -d_{\Bcat(M,P)}
+  \end{bmatrix} \,.
+\]
+For any two objects~$P, Q \in \Ob(\Bcat)$ the morphism of chain complexes
+\[
+  \widehat{C}_{P,Q}
+  \colon
+  \Bcat(P,Q)
+  \to
+  \Bcat\bigl( \widehat{C}(P), \widehat{C}(Q) \bigr)
+\]
+is given by
+\[
+  g
+  \mapsto
+  ((a,b) \mapsto (g \circ a, (-1)^{\hdeg{g}} g \circ b) \,.
+\]
+
+We note that these formulae make sense in any dg-category.
+We can therefore define for every dg-category~$\Bcat$ and every~$f \in \Cycles^0(\Bcat(x,y))$ a left~{\dgmodule{$\Bcat$}}~$C \colon \Bcat \to \Ch(k)$ by the same expressions as above.
+One can then define a \defemph{cone} of~$f$ in~$\Bcat$ as a representing object for this dg-functor.
+This allows us to talk about cones of morphisms in dg-categories.
 
 
 
