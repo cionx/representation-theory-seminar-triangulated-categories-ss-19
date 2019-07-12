@@ -27,7 +27,7 @@ For this talk chain complexes has differential of degree~$+1$.
 
 
 
-\subsection{The Abelianess of Triangulated Categories}
+\subsection{The Abelianess of Triangulated and Derived Categories}
 
 \begin{definition}
   An abelian category~$\Acat$ is \defemph{semisimple abelian} or simply \defemph{semisimple} if every short exact sequence in~$\Acat$ splits.
@@ -44,11 +44,9 @@ For this talk chain complexes has differential of degree~$+1$.
 
 \begin{corollary}
   \label{triangulated abelian is semisimple}
-  A triangulated category that is abelian is already semisimple.
+  A triangulated category that is abelian is already semisimple abelian.
   \qed
 \end{corollary}
-
-We see from \cref{triangulated abelian is semisimple} that most triangulated categories are not abelian.
 
 \begin{proposition}
   \label{when the derived is abelian}
@@ -67,7 +65,6 @@ We see from \cref{triangulated abelian is semisimple} that most triangulated cat
   If these equivalent conditions are satisfied then~$\Derived(\Acat) \equiv \Acat^\Integer$ via the homology functor~$\Homology^* \colon \Derived(\Acat) \to \Acat^\Integer$ with quasi-inverse~$\Acat^\Integer \to \Ch(\Acat) \to \Derived(\Acat)$.
 \end{proposition}
 
-
 \begin{proof}
   See \cref{when the derived is abelian proof}.
 \end{proof}
@@ -76,8 +73,19 @@ We see from \cref{triangulated abelian is semisimple} that most triangulated cat
 
 \subsection{Non-Functoriality of Cones}
 
-Triangulated categories do in general not admit functorial cones.
-As a consequence of this we see that for a triangulated category~$\Tcat$ and a (small) index category~$I$ the diagram category~$\Tcat^I$ does in general not inherit a triangulated structure from~$\Tcat$:
+Triangulated Categories do in general not admit functorial cones.
+This can be formalized by the following result:
+
+\begin{proposition}
+  Let~$\Tcat$ be an idempotent complete triangulated category.
+  If~$\Tcat$ admits functorial cones then~$\Tcat$ is already semisimple abelian.
+\end{proposition}
+
+
+
+\subsection{Functor Categories Don’t Inherit a Triangulated Structure}
+
+As a consequence of the above we see that for a triangulated category~$\Tcat$ and a (small) index category~$I$ the diagram category~$\Tcat^I$ does in general not inherit a triangulated structure from~$\Tcat$:
 
 Given a morphism~$f \colon D \to D'$ in~$\Tcat^I$ we would otherwise like to compute its cone for the inherited triangulated structure of~$\Tcat^I$ pointwise, i.e.\ for any morphism~$e \colon i \to j$ in~$I$ we want the following commutative diagram:
 \[
@@ -91,11 +99,11 @@ Given a morphism~$f \colon D \to D'$ in~$\Tcat^I$ we would otherwise like to com
     \arrow{r}
     &
     \cone_{\Tcat}(f)(i)
-%     \arrow{r}
+    \arrow[equal]{r}
     \arrow[dashed]{d}[right]{\cone(f)(e)}
-%     &
-%     \Sigma(D(i))
-%     \arrow{d}[right]{\Sigma(D(e))}
+    &
+    \cone_{\Tcat}(f_i)
+    \arrow[dashed]{d}
     \\
     D(j)
     \arrow{r}[below]{f_j}
@@ -104,20 +112,15 @@ Given a morphism~$f \colon D \to D'$ in~$\Tcat^I$ we would otherwise like to com
     \arrow{r}
     &
     \cone_{\Tcat}(f)(j)
-%     \arrow{r}
+    \arrow[equal]{r}
     &
-%     \Sigma(D(j))
+    \cone_{\Tcat}(f_j)
   \end{tikzcd}
 \]
 The vertical dashed arrow comes from (TR3).
 But by the missing functoriality of the cone in~$\Tcat$ these diagrams do not assemble into a functor~$\cone(f) \colon I \to \Tcat$.
 
-The missing functoriality of the cone is in general unfixable, as the following result asserts:
 
-\begin{proposition}
-  Let~$\Tcat$ be an idempotent complete triangulated category.
-  If~$\Tcat$ admits functorial cones then~$\Tcat$ is abelian and semisimple.
-\end{proposition}
 
 
 
@@ -127,20 +130,22 @@ One might suspect that for~$\Tcat = \Derived(\Acat)$, where~$\Acat$ is some abel
 (Note that the category~$\Acat^I$ is again abelian.)
 The problem is that there is in general no such equivalence.
 
-Take for example~$\Acat = \Vect{k}$ and let~$I = (\bullet \to \bullet)$ be the arrow category.
-The abelian category~$\Acat$ is semisimple whence~$\Derived(\Acat)$ and then also~$\Derived(\Acat)^I$ is again abelian by \cref{when the derived is abelian}.
-But the functor category~$\Acat^I$ is equivalent to the category of representations of the quiver~$\bullet \to \bullet$ and therefore not abelian.
-(The path algebra of this quiver is isomorphic to the algebra of upper triangular matrices of size~$2$, which is not semisimple.)
-The derived category~$\Derived(\Acat^I)$ is thus not again abelian.
-This shows that~$\Derived(\Acat)^I$ is abelian but~$\Derived(\Acat^I)$ is not abelian, which entails that these categories are not equivalent.
-
+\begin{example}
+  \label{example different derived}
+  Let~$\Acat = \Vect{k}$ and let~$I = (\bullet \to \bullet)$ be the arrow category.
+  The abelian category~$\Acat$ is semisimple whence~$\Derived(\Acat)$ and then also~$\Derived(\Acat)^I$ is again abelian by \cref{when the derived is abelian}.
+  But the functor category~$\Acat^I$ is equivalent to the category of representations of the quiver~$\bullet \to \bullet$ and therefore not abelian.
+  (The path algebra of this quiver is isomorphic to the algebra of upper triangular matrices of size~$2$, which is not semisimple.)
+  The derived category~$\Derived(\Acat^I)$ is thus not again abelian.
+  This shows that~$\Derived(\Acat)^I$ is abelian but~$\Derived(\Acat^I)$ is not abelian, which entails that these categories are not equivalent.
+\end{example}
 
 
 \subsection{(Non-)Existence of Limits and Colimits}
 \label{nonexistence of pushouts}
 
 A triangulated category~$\Tcat$ is in general neither complete nor cocomplete.
-See \cref{nonexistence of pushouts example} for an explicit counterexample.
+See \cref{nonexistence of pushouts example} for a popular counterexample.
 
 
 
@@ -205,56 +210,27 @@ in~$\Ch(\Acat)$ the induced morphism
   \xlongto{ \begin{bmatrix} g & 0 \\ 0 & h \end{bmatrix} }
   C(f') \,.
 \]
-This functor is additive, and under the identification
-\[
-  \Mor(\Ch(\Acat))
-  \iso
-  \Ch(\Acat)^I
-  \iso
-  \Ch(\Acat^I)
-  \iso
-  \Ch(\Mor(\Acat))
-\]
-this cone functor~$C$ respect quasi-isomorphisms:
-The quasi-isomorphism in~$\Ch(\Acat^I)$ correspond to a pointwise quasi-isomorphism in~$\Ch(\Acat)^I$.
-If~$(g,h) \colon f \to f'$ in~$\Ch(\Acat)^I$ is such a pointwise quasi-isomorphism, i.e.\ if both~$g$ and~$h$ are quasi-isomorphism, then
-\[
-  \begin{tikzcd}[sep = large, ampersand replacement = \&]
-    0
-    \arrow{r}
-    \&
-    Y
-    \arrow{r}[above]{\begin{bsmallmatrix} 0 \\ 1 \end{bsmallmatrix}}
-    \arrow{d}[left]{h}
-    \&
-    C(f)
-    \arrow{r}[above]{\begin{bsmallmatrix} -1 & 0 \end{bsmallmatrix}}
-    \arrow{d}[right]{C(g,h)}
-    \&
-    X[1]
-    \arrow{r}
-    \arrow{d}[right]{g}
-    \&
-    0
-    \\
-    0
-    \arrow{r}
-    \&
-    Y'
-    \arrow{r}[above]{\begin{bsmallmatrix} 0 \\ 1 \end{bsmallmatrix}}
-    \&
-    C(f')
-    \arrow{r}[above]{\begin{bsmallmatrix} -1 & 0 \end{bsmallmatrix}}
-    \&
-    X'[1]
-    \arrow{r}
-    \&
-    0
-  \end{tikzcd}
-\]
-is a commutative diagram with short exact rows.
-We get an induced ladder diagram whose rows are the long exact cone sequences and where~$h$ and~$g$ induce vertical isomorphisms.
-It follows from the five lemma that~$C(g,h)$ also induces isomorphisms in homology, i.e.\ is a quasi-isomorphism.
+This functor is additive
+
+\begin{lemma}
+  \label{cones respect quasi isos}
+  Under the identification
+  \[
+    \Mor(\Ch(\Acat))
+    \iso
+    \Ch(\Acat)^I
+    \iso
+    \Ch(\Acat^I)
+    \iso
+    \Ch(\Mor(\Acat))
+  \]
+  the cone functor~$C$ respect quasi-isomorphisms.
+\end{lemma}
+
+\begin{proof}
+  See \cref{cones respect quasi isos proof}.
+\end{proof}
+
 It follows that the cone functor~$C$ descends to an additive functor
 \[
   C
@@ -328,69 +304,73 @@ By replacing \enquote{terminal} with \enquote{inital} we arrive at the definitio
 If~$F$ is respects quasi-isomporphisms, i.e.\ is exact, then~$\Left F$ (resp.~$\Right F$) is simply the induced induced functor~$\Derived(\Acat) \to \Derived(\Bcat)$ and~$\varepsilon$ is the identity transformation.
 
 One can rephase the above constructions in the language of total derived functors:
-\begin{enumerate}
-  \item
-    The cone functor~$C \colon \Derived(\Mor(\Acat)) \to \Derived(\Acat)$ constructed above is the total left derived of the cokernel functor
-    \[
-      \coker
-      \colon
-      \Ch(\Mor(\Acat)))
-      \iso
-      \Mor(\Ch(\Acat))
-      \to
-      \Ch(\Acat) \,.
-    \]
-  \item
-    Let~$I$ be an index category and suppose that~$\Acat$ admits all (co)limits of shape~$I$.
-    Then the constant diagram functor~$\Delta \colon \Ch(\Acat) \to \Ch(\Acat)^I$ admits adjoints
-    \[
-      {\colim_I}
-      \ladjoint
-      \Delta
-      \ladjoint
-      {\lim_I} \,.
-    \]
-    The functors
-    \[
-      \colim_I, \lim_I
-      \colon
-      \Ch(\Acat^I)
-      \iso
-      \Ch(\Acat)^I
-      \to
-      \Ch(\Acat)
-    \]
-    admit total derived functors
-    \[
-      \Left {\colim_I},
-      \Right {\lim_I}
-      \colon
-      \Derived(\Acat^I)
-      \to
-      \Derived(\Acat) \,.
-    \]
-    These are precisely the functors~$\hocolim_I$ and~$\holim_I$ introduced above.
-    Hence the adjunction
-    \[
-      {\colim_I}
-      \ladjoint
-      \Delta
-      \ladjoint
-      {\lim_I} \,.
-    \]
-    descends to a derived adjunction
-    \[
-      \Left {\colim_I}
-      =
-      \hocolim_I
-      \ladjoint
-      \Delta
-      \ladjoint
-      \holim_I
-      =
-      \Right {\lim_I} \,.
-    \]
-\end{enumerate}
+\pagebreak
+\begin{example}
+  \leavevmode
+  \begin{enumerate}
+    \item
+      The cone functor~$C \colon \Derived(\Mor(\Acat)) \to \Derived(\Acat)$ constructed above is the total left derived of the cokernel functor
+      \[
+        \coker
+        \colon
+        \Ch(\Mor(\Acat)))
+        \iso
+        \Mor(\Ch(\Acat))
+        \to
+        \Ch(\Acat) \,.
+      \]
+    \item
+      Let~$I$ be an index category and suppose that~$\Acat$ admits all (co)limits of shape~$I$.
+      Then the constant diagram functor~$\Delta \colon \Ch(\Acat) \to \Ch(\Acat)^I$ admits adjoints
+      \[
+        {\colim_I}
+        \ladjoint
+        \Delta
+        \ladjoint
+        {\lim_I} \,.
+      \]
+      The functors
+      \[
+        \colim_I, \lim_I
+        \colon
+        \Ch(\Acat^I)
+        \iso
+        \Ch(\Acat)^I
+        \to
+        \Ch(\Acat)
+      \]
+      admit total derived functors
+      \[
+        \Left {\colim_I},
+        \Right {\lim_I}
+        \colon
+        \Derived(\Acat^I)
+        \to
+        \Derived(\Acat) \,.
+      \]
+      These are precisely the functors~$\hocolim_I$ and~$\holim_I$ introduced above.
+      Hence the adjunction
+      \[
+        {\colim_I}
+        \ladjoint
+        \Delta
+        \ladjoint
+        {\lim_I} \,.
+      \]
+      descends to a derived adjunction
+      \[
+        \Left {\colim_I}
+        =
+        \hocolim_I
+        \ladjoint
+        \Delta
+        \ladjoint
+        \holim_I
+        =
+        \Right {\lim_I} \,.
+      \]
+  \end{enumerate}
+\end{example}
 
 
 \begin{remark}
@@ -408,12 +388,17 @@ One can rephase the above constructions in the language of total derived functor
     \Derived(\Acat^I) \to \Derived(\Acat)^I \,,
   \]
   which we will call the \defemph{forgetful functor}.
-  One may think about~$\Derived(\Acat^I)$ as consisting of diagrams in~$\Acat$ of shape~$I$ which strictly commute, whereas~$\Derived(\Acat)^I$ then consists of diagram of shape~$I$ which commute only \enquote{up to homotopy}.
+  One may think about~$\Derived(\Acat^I)$ as consisting of diagrams in~$\Acat$ of shape~$I$ which strictly commute, i.e.\ \enquote{coherent diagrams}, whereas~$\Derived(\Acat)^I$ then consists of diagram of shape~$I$ which commute only \enquote{up to homotopy}, i.e.\ \enquote{incoherent diagrams}.
   
   We have seen above that we have functorial constructions~$\Derived(\Acat^I) \to \Derived(\Acat)$ for some of our problems.
   We can now see why these does not lead to solutions to the original problems, which require functors~$\Derived(\Acat)^I \to \Derived(\Acat)$:
   This would require the functors~$\Derived(\Acat^I) \to \Derived(\Acat)$ to extend along the forgetful functor~$\Derived(\Acat^I) \to \Derived(\Acat)^I$, which they have no reason to do.
 \end{remark}
+
+\begin{example}
+  We see that in \cref{example different derived} the category~$\Derived(\Acat)^I$ may be abelian, but this nice categorical property comes at the cost of losing the information wich we are interested in.
+\end{example}
+
 
 
 
@@ -454,6 +439,10 @@ Recall that
 \]
 (See \cref{detailed dg review} for a more detailed review on dg-categories.)
 
+\begin{example}
+  It follows from~$\Cycles^0(\dgCh(k)) = \KHomotopy(k)$ that one can think about~$\dgCh(k)$ as a dg-enhancement of~$\KHomotopy(k)$.
+  This expresses the fact that one works with~$\KHomotopy(k)$ by working in the original category~$\Ch(k)$ up to homotopy.
+\end{example}
 
 
 
@@ -657,7 +646,7 @@ This description of~$\Homology^0(\dgdgMod{\Acat})$ and its triangulated structur
         0
       \end{tikzcd}
     \]
-    be be a commutative diagram in~$\dgMod{\Acat}$ whose rows are contained in~$\Sfrob_{\Acat}$ and where the left hand square is a pushout square.
+    be be a commutative diagram in~$\dgMod{\Acat}$ where the left hand square is a pushout square.
     Then the resulting sequence
     \[
       M
@@ -841,89 +830,94 @@ We hence find that the pushout
 \]
 is given by~$(C(f))_x = C(f_x)$ at every~$x \in \Ob(\Acat)$, i.e.\ the~{\dgmodule{$\Acat$}}~$C(f)$ is pointwise given by the usual mapping cone of chain complexes.
 
-We see that~$C(f)$ is actually the cone of~$f$ in the triangulated category~$\Homology^0(\dgdgMod{\Acat})$:
-We have the following commutative diagram in which the left hand side is a pushout, and where the upper row is exact and contained in the Frobenius exact structure~$\Sfrob_{\Acat}$:
-\[
-  \begin{tikzcd}
-    0
-    \arrow{r}
-    &
+\begin{proposition}
+  The~{\dgmodule{$\Acat$}}~$C(f)$ is the cone of~$f$ in the triangulated category~$\Homology^0(\dgdgMod{\Acat})$.
+\end{proposition}
+
+\begin{proof}
+  We have the following commutative diagram in which the left hand side is a pushout:
+  \[
+    \begin{tikzcd}
+      0
+      \arrow{r}
+      &
+      M
+      \arrow{r}[above]{i_M}
+      \arrow{d}[left]{f}
+      \arrow[phantom]{dr}{\ulcorner}
+      &
+      IM
+      \arrow{r}[above]{p_M}
+      \arrow{d}
+      &
+      M[1]
+      \arrow{r}
+      &
+      0
+      \\
+      {}
+      &
+      N
+      \arrow{r}
+      &
+      C(f)
+      &
+      {}
+      &
+      {}
+    \end{tikzcd}
+  \]
+  A standard lemma from homological algebra asserts that we can extend the above diagram to a commutative diagram
+  \[
+    \begin{tikzcd}
+      0
+      \arrow{r}
+      &
+      M
+      \arrow{r}[above]{i_M}
+      \arrow{d}[left]{f}
+      \arrow[phantom]{dr}{\ulcorner}
+      &
+      IM
+      \arrow{r}[above]{p_M}
+      \arrow{d}
+      &
+      M[1]
+      \arrow{r}
+      \arrow[dashed,equal]{d}
+      &
+      0
+      \\
+      0
+      \arrow[dashed]{r}
+      &
+      N
+      \arrow{r}
+      &
+      C(f)
+      \arrow[dashed]{r}
+      &
+      M[1]
+      \arrow[dashed]{r}
+      &
+      0
+    \end{tikzcd}
+  \]
+  whose row are exact.
+  It follows from the axioms of a Frobenius exact structure that the lower row is again contained in~$\Sfrob_{\Acat}$.
+  We have seen in the previous review on Frobenius exact structures that
+  \[
     M
-    \arrow{r}[above]{i_M}
-    \arrow{d}[left]{f}
-    \arrow[phantom]{dr}{\ulcorner}
-    &
-    IM
-    \arrow{r}[above]{p_M}
-    \arrow{d}
-    &
-    M[1]
-    \arrow{r}
-    &
-    0
-    \\
-    {}
-    &
+    \xlongto{f}
     N
-    \arrow{r}
-    &
+    \to
     C(f)
-    &
-    {}
-    &
-    {}
-  \end{tikzcd}
-\]
-A standard lemma from homological algebra asserts that we can extend the above diagram to a commutative diagram
-\[
-  \begin{tikzcd}
-    0
-    \arrow{r}
-    &
-    M
-    \arrow{r}[above]{i_M}
-    \arrow{d}[left]{f}
-    \arrow[phantom]{dr}{\ulcorner}
-    &
-    IM
-    \arrow{r}[above]{p_M}
-    \arrow{d}
-    &
+    \to
     M[1]
-    \arrow{r}
-    \arrow[dashed,equal]{d}
-    &
-    0
-    \\
-    0
-    \arrow[dashed]{r}
-    &
-    N
-    \arrow{r}
-    &
-    C(f)
-    \arrow[dashed]{r}
-    &
-    M[1]
-    \arrow[dashed]{r}
-    &
-    0
-  \end{tikzcd}
-\]
-whose row are exact.
-It follows from the axioms of a Frobenius exact structure that the lower row is again contained in~$\Sfrob_{\Acat}$.
-We have seen in the previous review on Frobenius exact structures that
-\[
-  M
-  \xlongto{f}
-  N
-  \to
-  C(f)
-  \to
-  M[1]
-\]
-is therefore a distinguished triangle in~$\Homology^0(\dgdgMod{\Acat})$.
-This entails that~$C(f)$ is a cone of~$f$ in~$\Homology^0(\dgdgMod{\Acat})$.
+  \]
+  is therefore a distinguished triangle in~$\Homology^0(\dgdgMod{\Acat})$.
+  This entails that~$C(f)$ is a cone of~$f$ in~$\Homology^0(\dgdgMod{\Acat})$.
+\end{proof}
 
 We have thus seen that one can think about the cone in~$\Homology^0(\dgdgMod{\Acat})$ as a kind of \enquote{derived cokernel} of~$f$, coming from a pushout in~$\dgMod{\Acat}$ that was choosen as a \enquote{cokernel up to homotopy}.
 
@@ -1076,6 +1070,50 @@ Suppose now that~$\Homology^0(c)$ is an isomorphism.
 It follows from~$c \circ f = 0$ in~$\Derived(\Integer)$ that~$\Homology^0(c) \circ f = 0$ in~$\Mod{\Integer}$.
 It now further follows that~$f = 0$ which is wrong.
 
+
+
+\subsection{Proof of \cref{cones respect quasi isos}}
+\label{cones respect quasi isos proof}
+
+The quasi-isomorphism in~$\Ch(\Acat^I)$ correspond to a pointwise quasi-isomorphism in~$\Ch(\Acat)^I$.
+If~$(g,h) \colon f \to f'$ in~$\Ch(\Acat)^I$ is such a pointwise quasi-isomorphism, i.e.\ if both~$g$ and~$h$ are quasi-isomorphism, then
+\[
+  \begin{tikzcd}[sep = large, ampersand replacement = \&]
+    0
+    \arrow{r}
+    \&
+    Y
+    \arrow{r}[above]{\begin{bsmallmatrix} 0 \\ 1 \end{bsmallmatrix}}
+    \arrow{d}[left]{h}
+    \&
+    C(f)
+    \arrow{r}[above]{\begin{bsmallmatrix} -1 & 0 \end{bsmallmatrix}}
+    \arrow{d}[right]{C(g,h)}
+    \&
+    X[1]
+    \arrow{r}
+    \arrow{d}[right]{g}
+    \&
+    0
+    \\
+    0
+    \arrow{r}
+    \&
+    Y'
+    \arrow{r}[above]{\begin{bsmallmatrix} 0 \\ 1 \end{bsmallmatrix}}
+    \&
+    C(f')
+    \arrow{r}[above]{\begin{bsmallmatrix} -1 & 0 \end{bsmallmatrix}}
+    \&
+    X'[1]
+    \arrow{r}
+    \&
+    0
+  \end{tikzcd}
+\]
+is a commutative diagram with short exact rows.
+We get an induced ladder diagram whose rows are the long exact cone sequences and where~$h$ and~$g$ induce vertical isomorphisms.
+It follows from the five lemma that~$C(g,h)$ also induces isomorphisms in homology, i.e.\ is a quasi-isomorphism.
 
 
 \subsection{More Detailed Review on DG-Categories}
