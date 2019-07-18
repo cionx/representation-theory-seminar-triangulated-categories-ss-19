@@ -244,24 +244,25 @@ It follows that the cone functor~$C$ descends to an additive functor
 
 \subsection{Colimits and Limits}
 
-Let~$I$ be an index category and let~$\Delta \colon \Ccat \to \Ccat^I$ be the constant diagram functor.
-Recall that the existence of (co)limits of~{\shaped{$I$}} diagrams in~$\Ccat$ is equivalent to~$\Delta$ admiting adjoints
+Let~$I$ be an index category and let~$\const \colon \Ccat \to \Ccat^I$ be the constant diagram functor.
+Recall that the existence of (co)limits of~{\shaped{$I$}} diagrams in~$\Ccat$ is equivalent to~$\const$ admiting adjoints
 \[
-  \colim_I \ladjoint \Delta \ladjoint \lim_I \,.
+  \colim_I \ladjoint \const \ladjoint \lim_I \,.
 \]
 That a derived category~$\Derived(\Acat)$ does in general not admit (co)limits can be circumvented by considering \defemph{homotopy (co)limits} instead:
 
 The constant diagram functor~$\Delta \colon \Ch(\Acat) \to \Ch(\Acat)^I \iso \Ch(\Acat^I)$ is additive and respects quasi-isomorphisms and hence descends to an additive functor
 \[
-  \Delta
+  \Const
   \colon
   \Derived(\Acat) \to \Derived(\Acat^I) \,.
 \]
-If~$\Acat$ admits all (co)limits of shape~$I$ then it follows that the functor~$\Delta$ admits adjoints
+We refer to the adjoints
 \[
-  \hocolim_I \ladjoint \Delta \ladjoint \holim_I \,.
+  \hocolim_I \ladjoint \Const \ladjoint \holim_I \,.
 \]
-
+(if they exist) as \defemph{homotopy colimit} and \defemph{homotopy limit}.
+These homotopy (co)limits can exist even if~$\Derived(\Acat)$ does not have (co)limits of shape~$I$.
 
 
 \subsection{Description as Total Derived Functors}
@@ -329,7 +330,7 @@ One can rephase the above constructions in the language of total derived functor
         \ladjoint
         {\lim_I} \,.
       \]
-      The functors
+      If the functors
       \[
         \colim_I, \lim_I
         \colon
@@ -348,7 +349,7 @@ One can rephase the above constructions in the language of total derived functor
         \to
         \Derived(\Acat) \,.
       \]
-      These are precisely the functors~$\hocolim_I$ and~$\holim_I$ introduced above.
+      then these are precisely the functors~$\hocolim_I$ and~$\holim_I$ introduced above.
       Hence the adjunction
       \[
         {\colim_I}
@@ -440,7 +441,7 @@ Recall that
 (See \cref{detailed dg review} for a more detailed review on dg-categories.)
 
 \begin{example}
-  It follows from~$\Cycles^0(\dgCh(k)) = \KHomotopy(k)$ that one can think about~$\dgCh(k)$ as a dg-enhancement of~$\KHomotopy(k)$.
+  It follows from~$\Homology^0(\dgCh(k)) = \KHomotopy(k)$ that one can think about~$\dgCh(k)$ as a dg-enhancement of~$\KHomotopy(k)$.
   This expresses the fact that one works with~$\KHomotopy(k)$ by working in the original category~$\Ch(k)$ up to homotopy.
 \end{example}
 
@@ -1230,12 +1231,11 @@ We calculate the pushout as
   \right)
   \\
   ={}&
-  C(f)
+  C(f) \,.
 \end{align*}
-as claimed.
 
 \begin{remark}
-  The claim of \cref{cone as pushout} is (a posteriori) not  surprising:c
+  The claim of \cref{cone as pushout} is (a posteriori) not  surprising:
   It is a standard statement from homological algebra that for a morphism of chain complexes~$f \colon X \to Y$ the data of a morphism~$h \colon C(f) \to Z$ is the same as that of a morphism~$g \colon Y \to Z$ together with a null homotopy of the composition~$g \circ f \colon X \to Z$.
   Whence~$C(f)$ corepresents morphisms going out of~$Y$ whose composition with~$f$ are zero \enquote{up to homotopy}.
 \end{remark}
